@@ -8,13 +8,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { WorkScreenComponent } from './work-screen/work-screen.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PrototypeDetailScreenComponent } from './prototype-detail-screen/prototype-detail-screen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginScreenComponent,
     NavBarComponent,
-    WorkScreenComponent
+    WorkScreenComponent,
+    PrototypeDetailScreenComponent
   ],
   imports: [
     BrowserModule,
