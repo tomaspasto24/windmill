@@ -1,4 +1,30 @@
 .check{
-    font-size: 40px;
-    
+    font-size: 80px;
+    position: fixed;
+    bottom: 0vmax;
+    padding: 10px 16px;
+    z-index: 1;
 }
+.left-arrow{
+    font-size: 40px;
+    position: fixed;
+    left: 0vmax;
+    padding: 10px 16px;
+    z-index: 1;
+}
+.square{
+  height: 100px;
+  width: 100px;
+  background-color: #555;
+}
+.card{
+    position: fixed;
+    bottom: 10%;
+    background: #f8f9fa;
+    width: 500px;
+    height: 500px;
+}
+.left-arrow-button{
+
+}
+
