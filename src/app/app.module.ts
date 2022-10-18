@@ -8,7 +8,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { WorkScreenComponent } from './work-screen/work-screen.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AbmPiezasScreenComponent } from './abm-piezas-screen/abm-piezas-screen.component';
+import { WindmillCardComponent } from './windmill-card/windmill-card.component';
 import { PrototypeDetailScreenComponent } from './prototype-detail-screen/prototype-detail-screen.component';
+import { AbmPrototypesScreenComponent } from './abm-prototypes-screen/abm-prototypes-screen.component';
+import { PrototypeCardComponent } from './prototype-card/prototype-card.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +20,17 @@ import { PrototypeDetailScreenComponent } from './prototype-detail-screen/protot
     LoginScreenComponent,
     NavBarComponent,
     WorkScreenComponent,
-    PrototypeDetailScreenComponent
+    AbmPiezasScreenComponent,
+    WindmillCardComponent,
+    PrototypeDetailScreenComponent,
+    AbmPrototypesScreenComponent,
+    PrototypeCardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,19 @@
+.transparent {
+   background-color: 'white' !important;
+   box-shadow: inset 0px 1px 0 rgba(0, 0, 0, .075);
+}
+
+.left-border-none {
+   border-left: none !important;
+   box-shadow: inset 0px 1px 0 rgba(0, 0, 0, .075);
+}
+
+
+.col {
+   margin: 10px;
+   margin-bottom: 30px;
+}
+
+.cardContainer {
+   height: 250px;
+}
