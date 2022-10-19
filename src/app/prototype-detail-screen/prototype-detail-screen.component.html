@@ -8,10 +8,18 @@
     </div>
     
     <span role="button">
-        <fa-icon [icon]="faCircleArrowLeft" class="left-arrow" (click)="leftHandler()"></fa-icon>
+        <fa-icon [icon]="faCircleArrowLeft" class="left-arrow" (click)="backclicked()">
+            <a routerLink="/users"></a>
+        </fa-icon>
+    </span>
+
+    <span role="button">
+        <fa-icon [icon]="faCircleXMark" class="cross"></fa-icon>
     </span>
 
     <span role="button">
         <fa-icon [icon]="faCircleCheck" class="check"></fa-icon>
     </span>
+
+    
 </div>
