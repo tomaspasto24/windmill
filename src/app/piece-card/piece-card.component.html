@@ -1,14 +1,14 @@
-<div class="d-flex cardDisplay">
+<div class="d-flex {{ allowEdit ? 'hovered' : ''}}">
     <div class="card " style="width: 18rem;">
         <img src="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg"
             class="card-img-top" alt="...">
-        <div class="card-body">
+        <div class="card-body {{ allowEdit ? 'card-body-hovered' : ''}}">
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                 card's
                 content.</p>
         </div>
     </div>
-    <div class="btnMod mt-4">
+    <div class="btnMod mt-4 {{allowEdit ? '' : 'disable'}}">
         <div class="tagContainer text-center justify-content-center">
             <fa-icon [icon]="faDelete"></fa-icon>
         </div>

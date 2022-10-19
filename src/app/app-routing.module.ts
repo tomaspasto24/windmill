@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'pieces', component: AbmPiezasScreenComponent }, //T
   { path: 'prototypes', component: AbmPrototypesScreenComponent}, //J
   { path: 'prototype-detail/:id', component: PrototypeDetailScreenComponent}, //J
+  { path: '',   redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

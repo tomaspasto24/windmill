@@ -13,5 +13,6 @@ export class AbmPiezasScreenComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  edit: boolean = true;
 
 }
