@@ -10,8 +10,9 @@ const routes: Routes = [
   { path: 'works', component: WorkScreenComponent }, //T
   { path: 'login', component: LoginScreenComponent }, //T
   { path: 'pieces', component: AbmPiezasScreenComponent }, //T
-  { path: 'prototypes', component: AbmPrototypesScreenComponent }, //J
-  { path: 'prototype-detail/:id', component: PrototypeDetailScreenComponent }, //J
+  { path: 'prototypes', component: AbmPrototypesScreenComponent}, //J
+  { path: 'prototype-detail/:id', component: PrototypeDetailScreenComponent}, //J
+  { path: '',   redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

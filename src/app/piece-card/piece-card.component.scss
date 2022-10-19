@@ -1,5 +1,5 @@
-.cardDisplay:hover {
-   .card-body {
+.hovered:hover {
+   .card-body-hovered {
       display: block;
    }
 
@@ -8,12 +8,12 @@
    }
 }
 
-.card-body {
+.card-body-hovered {
    display: none;
 }
 
 .btnMod {
-   display: none;   
+   display: none;
 }
 
 .tagContainer {
@@ -28,3 +28,6 @@
    margin-top: 30px;
 }
 
+.disable {
+   visibility: hidden;
+}
