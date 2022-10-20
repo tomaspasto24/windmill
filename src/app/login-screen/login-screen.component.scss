@@ -1,9 +1,21 @@
 .container {
     height: 100%;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
 }
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
 
 .card {
     width: 65%;
+    align-self: center;
 }
 
 .item {
