@@ -2,6 +2,7 @@ import { Piece } from "./Piece"
 
 export interface Body extends Piece{
     name: String,
-    category: String,
+    photo: String,
+    airResistance: String,
     material: String
 }

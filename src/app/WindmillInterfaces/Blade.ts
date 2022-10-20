@@ -2,6 +2,7 @@ import { Piece } from "./Piece"
 
 export interface Blade extends Piece{
     name: String,
-    categoria: String,
+    photo: String,
+    airResistance: String,
     material: String
 }
