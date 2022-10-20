@@ -7,7 +7,7 @@ import { PrototypeDetailScreenComponent } from './prototype-detail-screen/protot
 import { AbmPrototypesScreenComponent } from './abm-prototypes-screen/abm-prototypes-screen.component';
 
 const routes: Routes = [
-  { path: 'works', component: WorkScreenComponent}, //T
+  { path: 'works', component: WorkScreenComponent }, //T
   { path: 'login', component: LoginScreenComponent }, //T
   { path: 'pieces', component: AbmPiezasScreenComponent }, //T
   { path: 'prototypes', component: AbmPrototypesScreenComponent}, //J
