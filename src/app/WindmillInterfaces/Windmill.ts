@@ -1,0 +1,4 @@
+interface Windmill{
+    name: String,
+    
+}
