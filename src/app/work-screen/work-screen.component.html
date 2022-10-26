@@ -5,8 +5,7 @@
 </mat-button-toggle-group> -->
 <div class="row">
     <div class="dashboard scroller col-3" cdkDropListGroup>
-        <div cdkDropList #list1="cdkDropList" [cdkDropListData]="listPieces" [cdkDropListConnectedTo]="[list1]"
-            class="example-list" (cdkDropListDropped)="drop($event)">
+        <div cdkDropList #list1="cdkDropList" [cdkDropListData]="listPieces" [cdkDropListConnectedTo]="[list1]">
             <div class="row form-group" cdkDrag>
                 <div class="col cardContainer">
                     <app-piece-card></app-piece-card>
@@ -30,8 +29,7 @@
         </div>
     </div>
     <div class="col-6">
-        <div cdkDropList #list2="cdkDropList" [cdkDropListData]="structure" [cdkDropListConnectedTo]="[list2]"
-            class="example-list" (cdkDropListDropped)="drop($event)">
+        <div cdkDropList #list2="cdkDropList" [cdkDropListData]="structure" [cdkDropListConnectedTo]="[list2]">
             <!-- <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div> -->
         </div>
     </div>

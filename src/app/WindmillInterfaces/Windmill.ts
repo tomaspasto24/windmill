@@ -1,13 +1,12 @@
-import { Blade } from "./Blade"
-import { Body } from "./Body"
-import { Base } from "./Base"
-import { User } from "./User"
+import { User } from "./User";
+import { Piece, PieceType } from "./Piece";
 
 export interface Windmill{
     name: String,
-    id: String,
-    blade: Blade,
-    body: Body,
-    base: Base,
+    _id: String,
+    blade: Piece,
+    body: Piece,
+    base: Piece,
     creator: User,
+    validated: false
 }
