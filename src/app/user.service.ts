@@ -28,7 +28,6 @@ export class UserService {
       password: password,
       role: role
     }
-    console.log(newUser);
     this.users.push(newUser);
   }
 }
