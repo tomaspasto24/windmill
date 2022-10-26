@@ -1,6 +1,6 @@
 .dashboard {
     background-color: grey;
-    width:  30%;
+    // width:  30%;
     height: 100%;
 }
 
@@ -13,4 +13,8 @@
 .scroller {
     overflow-y: scroll;
     overflow-x: hidden;
+}
+
+.container {
+    flex-direction: row-reverse;
 }

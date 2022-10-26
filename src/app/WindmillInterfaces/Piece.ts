@@ -1,6 +1,6 @@
 export interface Piece{
     name: String,
-    id:number,
+    id:String,
     photo: String,
     airResistance: String,
     material: String

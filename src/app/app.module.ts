@@ -13,6 +13,9 @@ import { PrototypeDetailScreenComponent } from './prototype-detail-screen/protot
 import { AbmPrototypesScreenComponent } from './abm-prototypes-screen/abm-prototypes-screen.component';
 import { PrototypeCardComponent } from './prototype-card/prototype-card.component';
 import { PieceCardComponent } from './piece-card/piece-card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { PieceCardComponent } from './piece-card/piece-card.component';
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
+    BrowserAnimationsModule,
+    DragDropModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
