@@ -10,7 +10,7 @@ import { NgFor } from '@angular/common';
 
 export class PiecesService {
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   pieces: Piece[] = [
     {
