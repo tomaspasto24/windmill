@@ -1,22 +1,56 @@
-<div class="dashboard scroller">
-    <div class="row form-group">
-        <div class="col cardContainer">
-            <app-piece-card></app-piece-card>
+<!-- <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle value="bold">Bold</mat-button-toggle>
+    <mat-button-toggle value="italic">Italic</mat-button-toggle>
+    <mat-button-toggle value="underline">Underline</mat-button-toggle>
+</mat-button-toggle-group> -->
+<div class="row">
+    <div class="dashboard scroller col-3" cdkDropListGroup>
+        <div cdkDropList #list1="cdkDropList" [cdkDropListData]="listPieces" [cdkDropListConnectedTo]="[list1]"
+            class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="row form-group" cdkDrag>
+                <div class="col cardContainer">
+                    <app-piece-card></app-piece-card>
+                </div>
+            </div>
+            <div class="row form-group" cdkDrag>
+                <div class="col cardContainer">
+                    <app-piece-card></app-piece-card>
+                </div>
+            </div>
+            <div class="row form-group" cdkDrag>
+                <div class="col cardContainer">
+                    <app-piece-card></app-piece-card>
+                </div>
+            </div>
+            <div class="row form-group" cdkDrag>
+                <div class="col cardContainer">
+                    <app-piece-card></app-piece-card>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row form-group">
-        <div class="col cardContainer">
-            <app-piece-card></app-piece-card>
+    <div class="col-6">
+        <div cdkDropList #list2="cdkDropList" [cdkDropListData]="structure" [cdkDropListConnectedTo]="[list2]"
+            class="example-list" (cdkDropListDropped)="drop($event)">
+            <!-- <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div> -->
         </div>
     </div>
-    <div class="row form-group">
-        <div class="col cardContainer">
-            <app-piece-card></app-piece-card>
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col cardContainer">
-            <app-piece-card></app-piece-card>
-        </div>
+
+
+</div>
+
+
+
+
+<!-- <div cdkDropList [cdkDropListData]="todo" class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+</div>
+
+<div class="example-container">
+    <h2>Done</h2>
+
+    <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
     </div>
 </div>
+</div> -->

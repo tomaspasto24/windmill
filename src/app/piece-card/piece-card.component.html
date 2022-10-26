@@ -1,11 +1,13 @@
 <div class="d-flex {{ allowEdit ? 'hovered' : ''}}">
     <div class="card " style="width: 18rem;">
-        <img src="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg"
+        <img src="{{piece?.photo}}"
             class="card-img-top" alt="...">
         <div class="card-body {{ allowEdit ? 'card-body-hovered' : ''}}">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                card's
-                content.</p>
+            <p class="card-text">
+                <strong>{{piece?.name}}</strong>
+                Material: {{piece?.material}} - 
+                Resistencia al aire: {{piece?.airResistance}}
+            </p>
         </div>
     </div>
     <div class="btnMod mt-4 {{allowEdit ? '' : 'disable'}}">

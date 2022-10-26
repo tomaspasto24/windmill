@@ -15,6 +15,9 @@ import { PrototypeCardComponent } from './prototype-card/prototype-card.componen
 import { PieceCardComponent } from './piece-card/piece-card.component';
 import { AdminScreenComponent } from './admin-screen/admin-screen.component';
 import { WindmillModelComponent } from './windmill-model/windmill-model.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,9 @@ import { WindmillModelComponent } from './windmill-model/windmill-model.componen
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
+    BrowserAnimationsModule,
+    DragDropModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { Piece } from '../WindmillInterfaces/Piece';
 
 @Component({
   selector: 'app-piece-card',
@@ -14,6 +15,8 @@ export class PieceCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @Input() piece: Piece | undefined;
+  
   @Input() allowEdit: boolean = false;
   
   faEdit = faPenToSquare;

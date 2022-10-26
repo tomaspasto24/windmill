@@ -5,7 +5,7 @@ import { User } from "./User"
 
 export interface Windmill{
     name: String,
-    id: number,
+    id: String,
     blade: Blade,
     body: Body,
     base: Base,

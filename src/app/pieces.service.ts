@@ -10,7 +10,7 @@ import { NgFor } from '@angular/common';
 
 export class PiecesService {
 
-  constructor() {}
+  constructor(private http: HttpClient) { }
 
   pieces: Piece[] = [
     {
@@ -21,7 +21,7 @@ export class PiecesService {
       material: 'Wood'
     },
     {
-      id: '2',
+      id: '2', 
       name: 'Pieza 2',
       photo: '',
       airResistance: '2',
@@ -40,25 +40,24 @@ export class PiecesService {
       photo: '',
       airResistance: '5',
       material: 'Wood'
-    }
+    },
   ]
-
   getPieces(): Piece[] {
     return this.pieces;
   }
 
-  getPiecebyId(id: String){
-    return this.pieces.find((pie: { id: String; }) => pie.id === id);
+  getPiecebyId(id: String) {
+    return this.pieces.find(pie => pie.id === id);
   }
 
   postPiece(name: string, photo: string, airResistance: string, material: string) {
     const pieceNew = {
-      id: Math.random.toString(),
+      id: Math.random().toString(),
       name,
       photo,
       airResistance,
       material
     }
-    this.pieces.push(pieceNew);    
+    this.pieces.push(pieceNew);
   }
 }
