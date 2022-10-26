@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Type } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Piece, PieceType } from './WindmillInterfaces/Piece';
-import { NgFor } from '@angular/common';
+import { Piece } from './WindmillInterfaces/Piece';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,59 +9,30 @@ import { NgFor } from '@angular/common';
 
 export class PiecesService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  pieces: Piece[] = [
-    {
-      _id: '1',
-      name: 'Pieza 1',
-      type: PieceType.Base,
-      photo: '',
-      airResistance: '4.5',
-      material: 'Wood'
-    },
-    {
-      _id: '2', 
-      name: 'Pieza 2',
-      type: PieceType.Body,
-      photo: '',
-      airResistance: '2',
-      material: 'Wood'
-    },
-    {
-      _id: '3',
-      name: 'Pieza 3',
-      type: PieceType.Blade,
-      photo: '',
-      airResistance: '3',
-      material: 'Wood'
-    },
-    {
-      _id: '4',
-      name: 'Pieza 4',
-      type: PieceType.Base,
-      photo: '',
-      airResistance: '5',
-      material: 'Wood'
-    },
-  ]
-  getPieces(): Piece[] {
-    return this.pieces;
+  url = 'http://localhost:3000/pieces';
+
+  getPieces(): Observable<Piece[]> {
+    return this.http.get<Piece[]>(this.url);
+  }
+  
+  getPieceById(id: string): Observable<Piece[]> {
+    const url = `${this.url}/${id}`
+    return this.http.get<Piece[]>(url);
   }
 
-  getPiecebyId(id: String) {
-    return this.pieces.find(pie => pie._id === id);
+  postPiece(name: string, photo: string, airResistance: Number, material: string): Observable<void> {
+    return this.http.post<void>(this.url, { name, photo, airResistance, material });
   }
 
-  postPiece(name: string, type: PieceType, photo: string, airResistance: string, material: string) {
-    const pieceNew = {
-      name,
-      _id: Math.random().toString(),
-      type,
-      photo,
-      airResistance,
-      material
-    }
-    this.pieces.push(pieceNew);
+  deletePiece(id: string): Observable<any> {
+    const url = `${this.url}/${id}`
+    return this.http.delete<any>(url);
+  }
+
+  editPiece(id: string, name: string, photo: string, airResistance: Number, material: string): Observable<any> {
+    const url = `${this.url}/${id}`
+    return this.http.put<any>(url, { name, photo, airResistance, material });
   }
 }

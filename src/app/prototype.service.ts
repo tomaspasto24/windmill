@@ -1,33 +1,39 @@
-import { Base } from './WindmillInterfaces/Base';
-import { Blade } from './WindmillInterfaces/Blade';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Windmill } from './WindmillInterfaces/Windmill';
+import { HttpClient } from '@angular/common/http';
+import { Piece } from './WindmillInterfaces/Piece';
+import { User } from './WindmillInterfaces/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PrototypeService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  prototypes: Windmill[] = [];
+  url = 'http://localhost:3000/prototypes';
 
-  getPrototype(): Windmill[] {
-    return this.prototypes;
+  getPrototypes(): Observable<Windmill[]> {
+    return this.http.get<Windmill[]>(this.url);
+  }
+  
+  getPrototypeById(id: string): Observable<Windmill[]> {
+    const url = `${this.url}/${id}`
+    return this.http.get<Windmill[]>(url);
   }
 
-  getPrototypebyId(id: String) {
-    return this.prototypes.find(proto => proto.id === id);
+  postPrototype(name: string, blade: Piece, body: Piece, base: Piece, creator: User): Observable<void> {
+    return this.http.post<void>(this.url, { name, blade, body, base, creator });
   }
 
-  // postPrototype(name: string, blade: Blade, body: Body, base: Base) {
-  //   const prototypeNew = {
-  //     id: Math.random().toString(),
-  //     name,
-  //     blade,
-  //     body,
-  //     base
-  //   }
-  //   this.prototypes.push(prototypeNew);
-  // }
+  deletePrototype(id: string): Observable<any> {
+    const url = `${this.url}/${id}`
+    return this.http.delete<any>(url);
+  }
+
+  editPrototype(id: string, name: string, blade: Piece, body: Piece, base: Piece, creator: User): Observable<any> {
+    const url = `${this.url}/${id}`
+    return this.http.put<any>(url, { name, blade, body, base, creator });
+  }
 }

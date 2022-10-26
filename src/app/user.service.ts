@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { User } from './WindmillInterfaces/User';
 
 @Injectable({
@@ -6,28 +8,30 @@ import { User } from './WindmillInterfaces/User';
 })
 export class UserService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  users: User[] = [
-    {
-      name: 'jr',
-      _id: '1',
-      password: 'xd',
-      role: 1,
-    }
-  ]
+  url = 'http://localhost:3000/users';
 
-  getUserId(id: String){
-    return this.users.find((pie: { _id: String; }) => pie._id === id);
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.url);
+  }
+  
+  getUserById(id: string): Observable<User[]> {
+    const url = `${this.url}/${id}`
+    return this.http.get<User[]>(url);
   }
 
-  addUser(name: String, id: String, password: String, role: number){
-    const newUser = {
-      name: name,
-      _id: id,
-      password: password,
-      role: role
-    }
-    this.users.push(newUser);
+  postUser(name: string, password: string, rol: Number): Observable<void> {
+    return this.http.post<void>(this.url, { name, password, rol });
+  }
+
+  deleteUser(id: string): Observable<any> {
+    const url = `${this.url}/${id}`
+    return this.http.delete<any>(url);
+  }
+
+  editUser(id: string, name: string, password: string, rol: Number): Observable<any> {
+    const url = `${this.url}/${id}`
+    return this.http.put<any>(url, { name, password, rol });
   }
 }
