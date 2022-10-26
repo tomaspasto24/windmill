@@ -5,8 +5,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PrototypeDetailScreenComponent } from './prototype-detail-screen/prototype-detail-screen.component';
 import { AbmPrototypesScreenComponent } from './abm-prototypes-screen/abm-prototypes-screen.component';
+import { AdminScreenComponent } from './admin-screen/admin-screen.component';
 
 const routes: Routes = [
+  { path: 'admin', component: AdminScreenComponent},
   { path: 'works', component: WorkScreenComponent }, //T
   { path: 'login', component: LoginScreenComponent }, //T
   { path: 'pieces', component: AbmPiezasScreenComponent }, //T

@@ -13,6 +13,8 @@ import { PrototypeDetailScreenComponent } from './prototype-detail-screen/protot
 import { AbmPrototypesScreenComponent } from './abm-prototypes-screen/abm-prototypes-screen.component';
 import { PrototypeCardComponent } from './prototype-card/prototype-card.component';
 import { PieceCardComponent } from './piece-card/piece-card.component';
+import { AdminScreenComponent } from './admin-screen/admin-screen.component';
+import { WindmillModelComponent } from './windmill-model/windmill-model.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { PieceCardComponent } from './piece-card/piece-card.component';
     AbmPrototypesScreenComponent,
     PrototypeCardComponent,
     PieceCardComponent,
+    AdminScreenComponent,
+    WindmillModelComponent,
   ],
   imports: [
     BrowserModule,
