@@ -32,7 +32,7 @@ export class PrototypeDetailScreenComponent implements OnInit {
   id : any = this.route.snapshot.paramMap.get('id');
 
   getPiece(id: String): void{
-    this.pieceService.getPiecebyId(id);
+    // this.pieceService.getPiecebyId(id);
   }
 }
 

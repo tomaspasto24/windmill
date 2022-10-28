@@ -18,6 +18,7 @@ import { WindmillModelComponent } from './windmill-model/windmill-model.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     FontAwesomeModule,
     BrowserAnimationsModule,
     DragDropModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

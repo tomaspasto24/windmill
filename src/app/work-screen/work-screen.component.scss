@@ -15,6 +15,65 @@
     overflow-x: hidden;
 }
 
-.container {
-    flex-direction: row-reverse;
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900&display=swap');
+
+.content {
+    width: 100%;
+    max-height: 50%;
+}
+
+.cards-scroller {
+    overflow-y: scroll;
+    position: relative;
+    padding: 15px;
+    border: 5px;
+    float: left;
+    width: 20%;
+}
+
+
+.col {
+    padding-bottom: 15px;
+    border: hidden;
+}
+
+.row {
+    padding: 0px;
+    margin: 0px;
+    max-height: 80%;
+}
+
+.modelo {
+    width: 400px;
+    max-width: 100%;
+    margin: 0 25px 25px 0;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.modelo h2 {
+    font-family: 'Poppins', sans-serif;
+    color: blue($color: #000000);
+    padding: 20px;
+    font-size: 32px;
+    border-radius: 10px;
+    max-width: 300px;
+    margin-left: 12.5%;
+}
+
+.cards-box {
+    padding-bottom: 15px;
+}
+
+.contenedor-aspa,
+.contenedor-cuerpo,
+.contenedor-base {
+    width: 300px;
+    height: 350px;
+    max-width: 100%;
+    max-height: 100%;
+    border: dashed blue($color: #000000) 5px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
 }
