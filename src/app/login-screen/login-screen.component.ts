@@ -20,10 +20,14 @@ export class LoginScreenComponent implements OnInit {
       if(response.error) {
         alert(response.error);
       } else {
+        console.log(response)
         this.userService.setUserToken(response.userData, response.token);
+        console.log(this.userService.token)
+        console.log(this.userService.user)
         this.router.navigate(['/works']);
       }
     });
+
   }
 
 }

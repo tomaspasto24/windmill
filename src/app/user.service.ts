@@ -27,12 +27,12 @@ export class UserService {
     this.token = token;
   }
 
-  register(user: String, password: String, rol: Number): Observable<void> {
-    return this.http.post<void>('http://localhost:3000/register', { 
-      user,
-      password,
-      rol
-    })
+  register(user: String, password: String, rol: Number): Observable<any> {
+    return this.http.post<any>('http://localhost:3000/register', { 
+      user: user,
+      password: password,
+      rol: rol
+    });
   }
 
   getUsers(): Observable<User[]> {
