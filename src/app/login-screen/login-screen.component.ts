@@ -15,11 +15,15 @@ export class LoginScreenComponent implements OnInit {
   }
 
   login(email: string, password: string) {
-    const observable = this.userService.getUsers();
+    const observable = this.userService.auth(email, password);
     observable.subscribe(response => {
-      console.log(response)
+      if(response.error) {
+        alert(response.error);
+      } else {
+        this.userService.setUserToken(response.userData, response.token);
+        this.router.navigate(['/works']);
+      }
     });
-    this.router.navigate(['/works']);
   }
 
 }
