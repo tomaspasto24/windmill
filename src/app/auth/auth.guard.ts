@@ -17,9 +17,52 @@ export class AuthGuard implements CanActivate {
     const url: string = state.url;
     return this.checkLogin(url);
   }
+
+  canActivate1(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): true | UrlTree{
+    if (this.authService.isLoggedIn >= 1){
+      return true;
+    }
+
+    this.authService.logout();
+
+    const url: string = state.url;
+
+    return this.checkLogin(url);
+  }
+
+  canActivate2(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): true | UrlTree{
+    if (this.authService.isLoggedIn >= 2){
+      return true;
+    }
+
+    this.authService.logout();
+
+    const url: string = state.url;
+
+    return this.checkLogin(url);
+  }
+
+  canActivate3(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): true | UrlTree{
+    if (this.authService.isLoggedIn === 3){
+      return true;
+    }
+
+    this.authService.logout();
+
+    const url: string = state.url;
+
+    return this.checkLogin(url);
+  }
+    
   
   checkLogin(url: string): true|UrlTree{
-    if (this.authService.isLoggedIn){
+    if (this.authService.isLoggedIn != -1){
       return true; 
     }
 
