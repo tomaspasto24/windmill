@@ -27,6 +27,11 @@ export class UserService {
     this.token = token;
   }
 
+  clearUserToken() {
+    this.user = undefined;
+    this.token = undefined;
+  }
+
   register(user: String, password: String, rol: Number): Observable<any> {
     return this.http.post<any>('http://localhost:3000/register', { 
       user: user,
