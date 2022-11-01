@@ -6,14 +6,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { PrototypeDetailScreenComponent } from './prototype-detail-screen/prototype-detail-screen.component';
 import { AbmPrototypesScreenComponent } from './abm-prototypes-screen/abm-prototypes-screen.component';
 import { AdminScreenComponent } from './admin-screen/admin-screen.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  { path: 'admin', component: AdminScreenComponent},
+  { path: 'admin', component: AdminScreenComponent, canActivate: [AuthGuard],
+    children: [
+      { path: 'prototypes', component: AbmPrototypesScreenComponent}, //J
+      { path: 'prototype-detail/:id', component: PrototypeDetailScreenComponent}, //J
+    ]
+  },
   { path: 'works', component: WorkScreenComponent }, //T
   { path: 'login', component: LoginScreenComponent }, //T
   { path: 'pieces', component: AbmPiezasScreenComponent }, //T
-  { path: 'prototypes', component: AbmPrototypesScreenComponent}, //J
-  { path: 'prototype-detail/:id', component: PrototypeDetailScreenComponent}, //J
   { path: '',   redirectTo: 'login', pathMatch: 'full' }
 ];
 

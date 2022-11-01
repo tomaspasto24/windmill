@@ -32,7 +32,7 @@ export class AbmPiezasScreenComponent implements OnInit {
     });
   }
 
-  postCard(name: string, photo: string, airResistance: number, material: string){
+  postPiece(name: string, photo: string, airResistance: number, material: string){
     this.piecesService.postPiece(name, photo, airResistance, material).subscribe();
   }
 

@@ -1,6 +1,7 @@
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Input } from '@angular/core';
+import { Windmill } from '../WindmillInterfaces/Windmill';
+import { PrototypeService } from '../prototype.service';
 @Component({
   selector: 'app-abm-prototypes-screen',
   templateUrl: './abm-prototypes-screen.component.html',
@@ -8,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AbmPrototypesScreenComponent implements OnInit {
   faBars = faFilter
-  constructor() { }
-
+  constructor(private prototypeService: PrototypeService) { }
+  
   ngOnInit(): void {
+    this.getPrototypes();
   }
 
+  @Input() windmill: Windmill | undefined;
+
+  @Input() prototypes: Windmill[] | undefined;
+
+  getPrototypes(){
+    this.prototypeService.getPrototypes().subscribe(data => {
+      this.prototypes = data as Windmill[];
+    });
+  }
 }

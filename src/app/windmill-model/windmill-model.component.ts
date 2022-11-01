@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Piece } from '../WindmillInterfaces/Piece';
+import { PiecesService } from '../pieces.service';
+import { Windmill } from '../WindmillInterfaces/Windmill';
 @Component({
   selector: 'app-windmill-model',
   templateUrl: './windmill-model.component.html',
@@ -7,9 +9,12 @@ import { Piece } from '../WindmillInterfaces/Piece';
 })
 export class WindmillModelComponent implements OnInit {
 
-  constructor() { }
+  constructor(private pieces: PiecesService) { }
 
   ngOnInit(): void {
   }
 
+  @Input() windmill: Windmill | undefined;
+  
+  @Input() allowEdit: boolean = false;
 }

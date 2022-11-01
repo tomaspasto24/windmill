@@ -12,10 +12,51 @@
     </div>
     <div class="btnMod mt-4 {{allowEdit ? '' : 'disable'}}">
         <div class="tagContainer text-center justify-content-center">
-            <fa-icon [icon]="faDelete"></fa-icon>
+            <fa-icon [icon]="faDelete" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" (click)="open(editModal)"></fa-icon>
         </div>
         <div class="tagContainer mt-5 text-center">
-            <fa-icon [icon]="faEdit"></fa-icon>
+            <fa-icon [icon]="faEdit" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" (click)="open(deleteModal)"></fa-icon>
         </div>  
     </div>
 </div>
+
+
+<ng-template #editModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">¿Estás seguro de que quieres eliminar esta pieza?</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="modal.close()" (click)="deleteCard(piece!._id)">Eliminar</button>
+    </div>
+  </ng-template>
+
+  <ng-template #deleteModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Editar Pieza</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <input #nameInput type="text" class="form-control" aria-label="Sizing example input"
+    aria-describedby="inputGroup-sizing-lg" placeholder="Name" required="required">
+    <input #photoInput type="text" class="form-control" aria-label="Sizing example input"
+    aria-describedby="inputGroup-sizing-lg" placeholder="Photo" required="required">
+    <input #airResistanceInput type="number" class="form-control" aria-label="Sizing example input"
+    aria-describedby="inputGroup-sizing-lg" placeholder="Air Resistance" required="required">
+    <input #materialInput type="text" class="form-control" aria-label="Sizing example input"
+    aria-describedby="inputGroup-sizing-lg" placeholder="Material" required="required">
+
+    <div class="modal-body">
+      
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close()" (click)="postCard(nameInput.value, photoInput.value, airResistanceInput.valueAsNumber, materialInput.value)">Editar</button>
+    </div>
+  </ng-template>

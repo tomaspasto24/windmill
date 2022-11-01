@@ -20,7 +20,11 @@
     
     <div class="container mt-5 ">
         <div class="row form-group">
-            <app-prototype-card></app-prototype-card>
+            <li *ngFor="let windmill of prototypes"> \
+                {{windmill.blade.photo}},
+                {{windmill.body.photo}},
+                {{windmill.base.photo}}
+            </li>
         </div>
     </div>
 </div>
