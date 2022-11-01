@@ -38,7 +38,20 @@ export class AdminScreenComponent implements OnInit {
     }
   }
 
-  /* addUser(name: String, id: String, password: String, role: number) {
-    this.userService.addUser(name, id, password, role);
-  } */
+  registerUser(name: String, password: String, password2: String, rol: string) {
+    let rolNumerico: number; 
+    rol = rol.toLowerCase();
+    if(rol === "admin" || rol === "administrador") {
+      rolNumerico = 1
+    } else {
+      rolNumerico = 0
+    }
+    if(password !== password2) {
+      alert('Contraseñas no coinciden');
+    } else {
+      const obs = this.userService.register(name, password, rolNumerico);
+      obs.subscribe(res => {})
+      alert('Usuario agregado con éxito');
+    }
+  }
 }

@@ -12,6 +12,29 @@ export class UserService {
 
   url = 'http://localhost:3000/users';
 
+  token: undefined | String = undefined;
+  user: undefined | User = undefined;
+
+  auth(user: String, password: String): Observable<any> {
+    return this.http.post<any>('http://localhost:3000/auth', { 
+      user,
+      password
+    })
+  }
+
+  setUserToken(user: User, token: String) {
+    this.user = user;
+    this.token = token;
+  }
+
+  register(user: String, password: String, rol: Number): Observable<any> {
+    return this.http.post<any>('http://localhost:3000/register', { 
+      user: user,
+      password: password,
+      rol: rol
+    });
+  }
+
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.url);
   }
