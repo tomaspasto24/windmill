@@ -29,20 +29,20 @@ export class AbmPiezasScreenComponent implements OnInit {
   }
 
   pieces: Piece[] = [];
-  currentPieces: Piece[] = [];
+  initialPieces: Piece[] = [];
   edit: boolean = true;
 
   getPieces() {
     this.piecesService.getPieces().subscribe(data => {
       this.pieces = data as Piece[];
-      this.currentPieces = data as Piece[];
+      this.initialPieces = data as Piece[];
     });
   }
 
   postCard(name: string, airResistance: number, material: string, type: string) {
     if (this.imgUrl !== undefined) {
       this.piecesService.postPiece(name, this.imgUrl, airResistance, material, type).subscribe(response => {
-        this.getPieces();
+        // REFRESCAR PANTALLA
       })
     } else {
       alert('Debe ingresar una imagen representando la pieza.')
@@ -91,16 +91,25 @@ export class AbmPiezasScreenComponent implements OnInit {
   }
 
   filterCategoria(termToSearch: string) {
-    this.pieces = this.currentPieces;
+    this.refreshPieces()
     if (termToSearch !== '') {
       this.pieces = this.pieces?.filter(piece => piece.type.toLowerCase().includes(termToSearch.toLowerCase()));
     }
   }
 
   filterMaterial(termToSearch: string) {
-    this.pieces = this.currentPieces;
+    this.refreshPieces()
     if (termToSearch !== '') {
       this.pieces = this.pieces?.filter(piece => piece.material.toLowerCase().includes(termToSearch.toLowerCase()));
     }
+  }
+
+  refreshPieces() {
+    this.pieces = this.initialPieces;
+  }
+
+  deletePiece(id: string) {
+    this.pieces = this.pieces.filter(piece => piece._id !== id);
+    this.initialPieces = this.initialPieces.filter(piece => piece._id !== id);
   }
 }

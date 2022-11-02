@@ -1,10 +1,10 @@
 export interface Piece{
-    name: String,
-    _id:String,
+    name: string,
+    _id: string,
     type: PieceType,
     photo: string,
-    airResistance: String,
-    material: String
+    airResistance: string,
+    material: string
 }
 
 export enum PieceType{

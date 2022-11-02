@@ -1,21 +1,65 @@
 <div class="d-flex {{ allowEdit ? 'hovered' : ''}}">
     <div class="card " style="width: 18rem;">
-        <img src="{{imageToShow}}"
-            class="card-img-top" alt="...">
+        <img src="{{imageToShow}}" class="card-img-top" alt="...">
         <div class="card-body {{ allowEdit ? 'card-body-hovered' : ''}}">
             <p class="card-text">
                 <strong>{{piece?.name}}</strong>
-                Material: {{piece?.material}} - 
+                Material: {{piece?.material}} -
                 Resistencia al aire: {{piece?.airResistance}}
             </p>
         </div>
     </div>
     <div class="btnMod mt-4 {{allowEdit ? '' : 'disable'}}">
-        <div class="tagContainer text-center justify-content-center">
-            <fa-icon [icon]="faDelete"></fa-icon>
+        <div class="tagContainer text-center justify-content-center" (click)="deletePiece()">
+            <fa-icon type="button" [icon]="faDelete"></fa-icon>
         </div>
         <div class="tagContainer mt-5 text-center">
-            <fa-icon [icon]="faEdit"></fa-icon>
-        </div>  
+            <fa-icon type="button" [icon]="faEdit" (click)="open(editModal)"></fa-icon>
+        </div>
     </div>
+</div>
+
+
+<div>
+    <ng-template #editModal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Editar Pieza</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+
+        <input #nameInput type="text" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-lg" placeholder="Name" required="required" value="{{piece?.name}}">
+
+        <div>
+            <div class="btn btn-primary btn-rounded">
+                <label class="form-label text-white m-1" for="customFile1">Choose file</label>
+                <input #photoInput type="file" class="form-control d-none" id="customFile1"
+                    (change)="processFile(photoInput)" />
+            </div>
+        </div>
+
+        <input #airResistanceInput type="number" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-lg" placeholder="Air Resistance" required="required"
+            value="{{piece?.airResistance}}">
+
+        <input #materialInput type="text" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-lg" placeholder="Material" required="required" value="{{piece?.material}}">
+
+        <label for="sel1">Tipo:</label>
+        <select class="form-control" id="sel1" #typeInput>
+            <option>Aspa</option>
+            <option>Cuerpo</option>
+            <option>Base</option>
+        </select>
+
+        <div class="modal-body">
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+                (click)="editCard(nameInput.value, airResistanceInput.valueAsNumber, materialInput.value, typeInput.value); modal.close();">Editar</button>
+        </div>
+    </ng-template>
 </div>

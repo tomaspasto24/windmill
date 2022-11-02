@@ -25,7 +25,7 @@
     <div class="container mt-5 ">
         <div class="row form-group">
             <div class="col mb-5 cardContainer" *ngFor="let piece of pieces">
-                <app-piece-card [allowEdit]="true" [piece]="piece"></app-piece-card>
+                <app-piece-card [allowEdit]="true" [piece]="piece" (refresh)="deletePiece($event)"></app-piece-card>
             </div>
         </div>
     </div>
