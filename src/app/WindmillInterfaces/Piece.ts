@@ -3,8 +3,8 @@ export interface Piece{
     _id: string,
     type: PieceType,
     photo: string,
-    airResistance: string,
-    material: string
+    airResistance: String,
+    material: String
 }
 
 export enum PieceType{

@@ -3,34 +3,29 @@
         <div class="row justify-content-right">
             <div class="col-sm-12 col-md-4">
                 <div class="input-group">
-                    <input class="form-control form-control-lg" type="text" placeholder="Filtro 1"
-                    aria-label=".form-control-lg example">
-                    <span class="input-group-text transparent left-border-none"> <fa-icon [icon]="faBars"></fa-icon></span>
+                    <input #category class="form-control form-control-lg" type="text" placeholder="Categoria"
+                        aria-label=".form-control-lg example" (input)="filterCategoria(category.value)">
+                    <span class="input-group-text transparent left-border-none">
+                        <fa-icon [icon]="faBars"></fa-icon>
+                    </span>
                 </div>
             </div>
             <div class="col-sm-12 col-md-4">
                 <div class="input-group">
-                    <input class="form-control form-control-lg" type="text" placeholder="Filtro 2"
-                    aria-label=".form-control-lg example">
-                    <span class="input-group-text transparent left-border-none"> <fa-icon [icon]="faBars"></fa-icon></span>
+                    <input #material class="form-control form-control-lg" type="text" placeholder="Material"
+                        aria-label=".form-control-lg example" (input)="filterMaterial(material.value)">
+                    <span class="input-group-text transparent left-border-none">
+                        <fa-icon [icon]="faBars"></fa-icon>
+                    </span>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="container mt-5 ">
         <div class="row form-group">
-            <div class="col mb-5 cardContainer">
-                <app-piece-card [allowEdit]="true"></app-piece-card>
-            </div>
-            <div class="col mb-5 cardContainer">
-                <app-piece-card [allowEdit]="true"></app-piece-card>
-            </div>
-            <div class="col mb-5 cardContainer">
-                <app-piece-card [allowEdit]="true"></app-piece-card>
-            </div>
-            <div class="col mb-5 cardContainer">
-                <app-piece-card [allowEdit]="true"></app-piece-card>
+            <div class="col mb-5 cardContainer" *ngFor="let piece of pieces">
+                <app-piece-card [allowEdit]="true" [piece]="piece"></app-piece-card>
             </div>
         </div>
     </div>
@@ -39,28 +34,45 @@
 <div>
     <ng-template #addModal let-modal>
         <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">Crear Pieza</h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">×</span>
-          </button>
+            <h4 class="modal-title" id="modal-basic-title">Crear Pieza</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
         </div>
-    
+
         <input #nameInput type="text" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-lg" placeholder="Name" required="required">
-        <input #photoInput type="text" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-lg" placeholder="Photo" required="required">
+            aria-describedby="inputGroup-sizing-lg" placeholder="Name" required="required">
+
+        <div>
+            <div class="btn btn-primary btn-rounded">
+                <label class="form-label text-white m-1" for="customFile1">Choose file</label>
+                <input #photoInput type="file" class="form-control d-none" id="customFile1"
+                    (change)="processFile(photoInput)" />
+            </div>
+        </div>
+
         <input #airResistanceInput type="number" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-lg" placeholder="Air Resistance" required="required">
+            aria-describedby="inputGroup-sizing-lg" placeholder="Air Resistance" required="required">
+
         <input #materialInput type="text" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-lg" placeholder="Material" required="required">
-    
+            aria-describedby="inputGroup-sizing-lg" placeholder="Material" required="required">
+
+        <label for="sel1">Tipo:</label>
+        <select class="form-control" id="sel1" #typeInput>
+            <option>Aspa</option>
+            <option>Cuerpo</option>
+            <option>Base</option>
+        </select>
+
         <div class="modal-body">
-          
+
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="modal.close()" (click)="postPiece(nameInput.value, photoInput.value, airResistanceInput.valueAsNumber, materialInput.value)">Añadir</button>
+            <button type="button" class="btn btn-secondary"
+                (click)="postCard(nameInput.value, airResistanceInput.valueAsNumber, materialInput.value, typeInput.value); modal.close();">Añadir</button>
         </div>
-      </ng-template>
+    </ng-template>
 
-      <fa-icon [icon]="faPlus" class="plus" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" (click)="open(addModal)"></fa-icon>  
+    <fa-icon [icon]="faPlus" class="plus" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"
+        (click)="open(addModal)"></fa-icon>
 </div>

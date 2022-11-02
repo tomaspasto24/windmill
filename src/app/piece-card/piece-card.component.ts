@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { PiecesService } from '../pieces.service';
+import { ImageService } from '../image.service';
 import { Piece } from '../WindmillInterfaces/Piece';
 
 @Component({
@@ -12,19 +13,24 @@ import { Piece } from '../WindmillInterfaces/Piece';
 
 export class PieceCardComponent implements OnInit {
 
-  constructor(private modalService: NgbModal, private piecesService: PiecesService) { }
-
-  ngOnInit(): void {
-  }
-
-  @Input() piece: Piece | undefined;
-  
-
-  @Input() allowEdit: boolean = false;
-  
+  constructor(private modalService: NgbModal, private piecesService: PiecesService, private imageservice: ImageService) { }
   faEdit = faPenToSquare;
   faDelete = faTrash;
   showHideBodyCard: boolean = false;
+  imageToShow: any;
+
+  @Input() piece: Piece | undefined;
+  @Input() allowEdit: boolean = false;
+
+  ngOnInit(): void {
+    if (this.piece !== undefined) {
+      this.imageservice.getImage(this.piece.photo).subscribe(data => {
+        this.createImageFromBlob(data);
+      }, error => {
+        console.log(error);
+      });
+    }
+  }
 
   cardBodyVisibility(visibility: boolean) {
     console.log(visibility)
@@ -56,7 +62,15 @@ export class PieceCardComponent implements OnInit {
     this.piecesService.deletePiece(id).subscribe();
   }
 
-  postCard(name: string, photo: string, airResistance: number, material: string){
-    this.piecesService.postPiece(name, photo, airResistance, material).subscribe();
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.imageToShow = reader.result;
+    }, false);
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
   }
+
 }

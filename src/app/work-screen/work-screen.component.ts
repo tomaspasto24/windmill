@@ -55,7 +55,7 @@ export class WorkScreenComponent implements OnInit {
   filtrarPiezas() {
     const observable = this.servicePiece.getPieces();
     observable.subscribe(response => {
-      response.forEach((pieza) => {
+      (response as Piece[]).forEach((pieza) => {
         if (pieza.type == PieceType.Blade) {
           this.aspasDisponibles.push(pieza);
         } else if (pieza.type == PieceType.Base) {
