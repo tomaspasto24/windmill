@@ -2,7 +2,7 @@ export interface Piece{
     name: String,
     _id:String,
     type: PieceType,
-    photo: String,
+    photo: string,
     airResistance: String,
     material: String
 }

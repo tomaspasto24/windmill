@@ -13,8 +13,8 @@ export class PiecesService {
 
   url = 'http://localhost:3000/pieces';
 
-  getPieces(): Observable<Piece[]> {
-    return this.http.get<Piece[]>(this.url);
+  getPieces() {
+    return this.http.get(this.url);
   }
   
   getPieceById(id: string): Observable<Piece[]> {
@@ -22,8 +22,8 @@ export class PiecesService {
     return this.http.get<Piece[]>(url);
   }
 
-  postPiece(name: string, photo: string, airResistance: Number, material: string): Observable<void> {
-    return this.http.post<void>(this.url, { name, photo, airResistance, material });
+  postPiece(name: string, photo: string, airResistance: Number, material: string, type: string) {
+    return this.http.post(this.url, { name, photo, airResistance, material, type }, {responseType: 'text'});
   }
 
   deletePiece(id: string): Observable<any> {
