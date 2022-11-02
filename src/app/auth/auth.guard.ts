@@ -3,13 +3,16 @@ import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } fro
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
-
+import { UserService } from '../user.service';
+import { User } from '../WindmillInterfaces/User';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  constructor (private authService: AuthService, private router: Router){}
+  constructor (private authService: AuthService, private router: Router, private userService: UserService){}
+
+  user = this.userService.user;
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -17,53 +20,14 @@ export class AuthGuard implements CanActivate {
     const url: string = state.url;
     return this.checkLogin(url);
   }
-
-  canActivate1(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): true | UrlTree{
-    if (this.authService.isLoggedIn >= 1){
-      return true;
-    }
-
-    this.authService.logout();
-
-    const url: string = state.url;
-
-    return this.checkLogin(url);
-  }
-
-  canActivate2(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): true | UrlTree{
-    if (this.authService.isLoggedIn >= 2){
-      return true;
-    }
-
-    this.authService.logout();
-
-    const url: string = state.url;
-
-    return this.checkLogin(url);
-  }
-
-  canActivate3(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): true | UrlTree{
-    if (this.authService.isLoggedIn === 3){
-      return true;
-    }
-
-    this.authService.logout();
-
-    const url: string = state.url;
-
-    return this.checkLogin(url);
-  }
-    
   
   checkLogin(url: string): true|UrlTree{
-    if (this.authService.isLoggedIn != -1){
-      return true; 
+    if (this.user != undefined){
+      
+      console.log(this.user.role == 3);
+      if (this.user.role == 3){
+        return true; 
+      }
     }
 
     this.authService.redirectUrl = url;

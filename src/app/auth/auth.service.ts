@@ -17,11 +17,10 @@ export class AuthService {
   login(): Observable<number> {
 
     console.log(this.userService.user!.role);
-    
-    if (this.userService.user!.role === 0){
+    if (this.userService.user!.role === 1){
       return of (1).pipe(
         delay(1000),
-        tap(() => this.isLoggedIn = 0)
+        tap(() => this.isLoggedIn = 1)
       );
     }
     if (this.userService.user!.role === 2){
