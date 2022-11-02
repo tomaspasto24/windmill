@@ -28,14 +28,14 @@ export class AbmPiezasScreenComponent implements OnInit {
     this.getPieces();
   }
 
-  @Input() pieces: Piece[] | undefined;
-
-
+  pieces: Piece[] = [];
+  currentPieces: Piece[] = [];
   edit: boolean = true;
 
   getPieces() {
     this.piecesService.getPieces().subscribe(data => {
       this.pieces = data as Piece[];
+      this.currentPieces = data as Piece[];
     });
   }
 
@@ -88,5 +88,19 @@ export class AbmPiezasScreenComponent implements OnInit {
     });
 
     reader.readAsDataURL(file);
+  }
+
+  filterCategoria(termToSearch: string) {
+    this.pieces = this.currentPieces;
+    if (termToSearch !== '') {
+      this.pieces = this.pieces?.filter(piece => piece.type.toLowerCase().includes(termToSearch.toLowerCase()));
+    }
+  }
+
+  filterMaterial(termToSearch: string) {
+    this.pieces = this.currentPieces;
+    if (termToSearch !== '') {
+      this.pieces = this.pieces?.filter(piece => piece.material.toLowerCase().includes(termToSearch.toLowerCase()));
+    }
   }
 }
