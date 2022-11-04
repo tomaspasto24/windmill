@@ -1,3 +1,4 @@
+import { GetCodePasswordScreenComponent } from './get-code-password-screen/get-code-password-screen.component';
 import { AbmPiezasScreenComponent } from './abm-piezas-screen/abm-piezas-screen.component';
 import { LoginScreenComponent } from './login-screen/login-screen.component';
 import { WorkScreenComponent } from './work-screen/work-screen.component';
@@ -6,14 +7,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { PrototypeDetailScreenComponent } from './prototype-detail-screen/prototype-detail-screen.component';
 import { AbmPrototypesScreenComponent } from './abm-prototypes-screen/abm-prototypes-screen.component';
 import { AdminScreenComponent } from './admin-screen/admin-screen.component';
+import { RecoverPasswordScreenComponent } from './recover-password-screen/recover-password-screen.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminScreenComponent},
-  { path: 'works', component: WorkScreenComponent }, //T
-  { path: 'login', component: LoginScreenComponent }, //T
-  { path: 'pieces', component: AbmPiezasScreenComponent }, //T
-  { path: 'prototypes', component: AbmPrototypesScreenComponent}, //J
-  { path: 'prototype-detail/:id', component: PrototypeDetailScreenComponent}, //J
+  { path: 'works', component: WorkScreenComponent }, // T 
+  { path: 'login', component: LoginScreenComponent }, // T
+  { path: 'pieces', component: AbmPiezasScreenComponent }, // T 
+  { path: 'recover-password/:code', component: RecoverPasswordScreenComponent }, // T
+  { path: 'getemail-password', component: GetCodePasswordScreenComponent }, // T
+  { path: 'prototypes', component: AbmPrototypesScreenComponent}, // J
+  { path: 'prototype-detail/:id', component: PrototypeDetailScreenComponent}, // J
   { path: '',   redirectTo: 'login', pathMatch: 'full' }
 ];
 

@@ -21,10 +21,19 @@
                         aria-describedby="inputGroup-sizing-lg" placeholder="Password" required="required">
                 </div>
             </div>
+            <div class="row">
+                <div class="item ">
+                    <button type="button" class="btn btn-primary btnLogin"
+                        (click)="login(emailInput.value, passwordInput.value)">Login</button>
+                </div>
+                <div class="item col-8">
+                </div>
 
-            <div class="item">
-                <button type="button" class="btn btn-primary btnLogin"
-                    (click)="login(emailInput.value, passwordInput.value)">Login</button>
+                <div class="item col-4">
+                    <button type="button" class="btn btn-outline btnOlvideContrasena" (click)="resetPassword()">
+                        Olvide mi contraseña
+                    </button>
+                </div>
             </div>
         </div>
 
