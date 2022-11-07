@@ -20,42 +20,46 @@
 </div>
 
 
-<ng-template #editModal let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">¿Estás seguro de que quieres eliminar esta pieza?</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">×</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-danger" (click)="modal.close()" (click)="deleteCard(piece!._id)">Eliminar</button>
-    </div>
+<div>
+  <ng-template #editModal let-modal>
+      <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Editar Pieza</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">×</span>
+          </button>
+      </div>
+
+      <input #nameInput type="text" class="form-control" aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-lg" placeholder="Name" required="required" value="{{piece?.name}}">
+
+      <div>
+          <div class="btn btn-primary btn-rounded">
+              <label class="form-label text-white m-1" for="customFile1">Choose file</label>
+              <input #photoInput type="file" class="form-control d-none" id="customFile1"
+                  (change)="processFile(photoInput)" />
+          </div>
+      </div>
+
+      <input #airResistanceInput type="number" class="form-control" aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-lg" placeholder="Air Resistance" required="required"
+          value="{{piece?.airResistance}}">
+
+      <input #materialInput type="text" class="form-control" aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-lg" placeholder="Material" required="required" value="{{piece?.material}}">
+
+      <label for="sel1">Tipo:</label>
+      <select class="form-control" id="sel1" #typeInput>
+          <option>Aspa</option>
+          <option>Cuerpo</option>
+          <option>Base</option>
+      </select>
+
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"
+              (click)="editCard(nameInput.value, airResistanceInput.valueAsNumber, materialInput.value, typeInput.value); modal.close();">Editar</button>
+      </div>
   </ng-template>
-
-  <ng-template #deleteModal let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Editar Pieza</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">×</span>
-      </button>
-    </div>
-
-    <input #nameInput type="text" class="form-control" aria-label="Sizing example input"
-    aria-describedby="inputGroup-sizing-lg" placeholder="Name" required="required">
-    <input #photoInput type="text" class="form-control" aria-label="Sizing example input"
-    aria-describedby="inputGroup-sizing-lg" placeholder="Photo" required="required">
-    <input #airResistanceInput type="number" class="form-control" aria-label="Sizing example input"
-    aria-describedby="inputGroup-sizing-lg" placeholder="Air Resistance" required="required">
-    <input #materialInput type="text" class="form-control" aria-label="Sizing example input"
-    aria-describedby="inputGroup-sizing-lg" placeholder="Material" required="required">
-
-    <div class="modal-body">
-      
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="modal.close()">Editar</button>
-    </div>
-  </ng-template>
+</div>

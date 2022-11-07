@@ -42,7 +42,7 @@ export class AbmPiezasScreenComponent implements OnInit {
   postCard(name: string, airResistance: number, material: string, type: string) {
     if (this.imgUrl !== undefined) {
       this.piecesService.postPiece(name, this.imgUrl, airResistance, material, type).subscribe(response => {
-        // REFRESCAR PANTALLA
+        this.getPieces();
       })
     } else {
       alert('Debe ingresar una imagen representando la pieza.')
