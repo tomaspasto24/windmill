@@ -33,46 +33,64 @@
 
 <div>
     <ng-template #addModal let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Crear Pieza</h4>
-            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-
-        <input #nameInput type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-lg" placeholder="Name" required="required">
-
-        <div>
-            <div class="btn btn-primary btn-rounded">
-                <label class="form-label text-white m-1" for="customFile1">Choose file</label>
-                <input #photoInput type="file" class="form-control d-none" id="customFile1"
-                    (change)="processFile(photoInput)" />
-            </div>
-        </div>
-
-        <input #airResistanceInput type="number" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-lg" placeholder="Air Resistance" required="required">
-
-        <input #materialInput type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-lg" placeholder="Material" required="required">
-
-        <label for="sel1">Tipo:</label>
-        <select class="form-control" id="sel1" #typeInput>
-            <option>Aspa</option>
-            <option>Cuerpo</option>
-            <option>Base</option>
-        </select>
-
         <div class="modal-body">
+            <body>
 
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary"
-                (click)="postCard(nameInput.value, airResistanceInput.valueAsNumber, materialInput.value, typeInput.value); modal.close();">Añadir</button>
+                <form action="" class="contact">
+                    <fieldset class="contact-inner">
+                    
+                        <p class="modal-input">
+                            <input #nameInput id="wrapper" type="text" class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-lg" placeholder="Name" required="required">
+                        </p>
+                        
+
+                        <input #photoInput type="file" class="form-control d-block" id="customFile1"
+                            (change)="processFile(photoInput)"/>
+                            
+                        <p class="modal-input">
+                            <input #airResistanceInput id="wrapper" type="number" class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-lg" placeholder="Air Resistance" required="required">
+                        </p>
+                
+                        <p class="modal-input">
+                        <label id="wrapper" for="select" class="select">
+                            <select class="subject" id="select" #typeInput>
+                                <option value="" selected>Type</option>
+                                <option>Aspa</option>
+                                <option>Cuerpo</option>
+                                <option>Base</option>
+                            </select>
+                        </label>
+                        </p>
+                
+                        <p class="modal-input">
+                            <input #materialInput id="wrapper" type="text" class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-lg" placeholder="Material" required="required">
+                        </p>
+                        
+                    </fieldset>
+                
+                    <p>
+                        <span class="cancel" id="contact-submit">
+                            <input type="button" value="Cancelar" (click)="modal.close();">
+                        </span>
+    
+                        <span class="contact-submit" id="contact-submit">
+                            <input type="button" value="Añadir Pieza" (click)="postCard(nameInput.value, airResistanceInput.valueAsNumber, materialInput.value, typeInput.value);
+                            modal.close();">
+                        </span>
+                    </p>
+                    
+                </form>
+              </body>
+
         </div>
     </ng-template>
+
+    
 
     <fa-icon [icon]="faPlus" class="plus" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"
         (click)="open(addModal)"></fa-icon>
 </div>
+

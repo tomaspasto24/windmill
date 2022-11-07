@@ -17,14 +17,13 @@ class ImageSnippet {
 
 export class PieceCardComponent implements OnInit {
 
+  constructor(private modalService: NgbModal, private piecesService: PiecesService, private imageservice: ImageService) { }
   faEdit = faPenToSquare;
   faDelete = faTrash;
   showHideBodyCard: boolean = false;
   imageToShow: any;
   selectedFile: ImageSnippet | undefined = undefined;
   imgUrl: undefined | string = undefined;
-
-  constructor(private imageservice: ImageService, private piecesService: PiecesService, private modalService: NgbModal) { }
 
   @Input() piece: Piece | undefined;
   @Input() allowEdit: boolean = false;
@@ -44,6 +43,31 @@ export class PieceCardComponent implements OnInit {
   cardBodyVisibility(visibility: boolean) {
     console.log(visibility)
     this.showHideBodyCard = visibility;
+  }
+
+  closeResult: string = '';
+
+  open(content:any) : any {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+    return content;
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+
+  deleteCard(id: string){
+    this.piecesService.deletePiece(id).subscribe();
   }
 
   createImageFromBlob(image: Blob) {
@@ -84,27 +108,6 @@ export class PieceCardComponent implements OnInit {
     });
 
     reader.readAsDataURL(file);
-  }
-
-  closeResult: string = '';
-
-  open(content: any): any {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-    return content;
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
   }
 
   editCard(name: string, airResistance: number, material: string, type: string) {

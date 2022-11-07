@@ -1,3 +1,41 @@
-<div>
-    
+<div class="d-flex {{ allowEdit ? 'hovered' : ''}}">
+    <div class="card " style="width: 18rem;">
+        <img src="{{windmill?.blade?.photo}}"
+            class="card-img-top" alt="...">
+        <div class="card-body {{ allowEdit ? 'card-body-hovered' : ''}}">
+            <p class="card-text">
+                <strong>{{windmill?.blade?.name}}</strong>
+                Material: {{windmill?.blade?.material}} - 
+                Resistencia al aire: {{windmill?.blade?.airResistance}}
+            </p>
+        </div>
+    </div>
+    <div class="btnMod mt-4 {{allowEdit ? '' : 'disable'}}"></div>
+
+    <div class="card " style="width: 18rem;">
+        <img src="{{windmill?.body?.photo}}"
+            class="card-img-top" alt="...">
+        <div class="card-body {{ allowEdit ? 'card-body-hovered' : ''}}">
+            <p class="card-text">
+                <strong>{{windmill?.body?.name}}</strong>
+                Material: {{windmill?.body?.material}} - 
+                Resistencia al aire: {{windmill?.body?.airResistance}}
+            </p>
+        </div>
+    </div>
+    <div class="btnMod mt-4 {{allowEdit ? '' : 'disable'}}"></div>
+
+    <div class="card " style="width: 18rem;">
+        <img src="{{windmill?.base?.photo}}"
+            class="card-img-top" alt="...">
+        <div class="card-body {{ allowEdit ? 'card-body-hovered' : ''}}">
+            <p class="card-text">
+                <strong>{{windmill?.base?.name}}</strong>
+                Material: {{windmill?.base?.material}} - 
+                Resistencia al aire: {{windmill?.base?.airResistance}}
+            </p>
+        </div>
+    </div>
+    <div class="btnMod mt-4 {{allowEdit ? '' : 'disable'}}"></div>
 </div>
+
