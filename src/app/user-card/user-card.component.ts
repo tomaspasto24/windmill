@@ -31,21 +31,22 @@ export class UserCardComponent implements OnInit {
     this.refresh.emit();
   }
 
-  async editUser(id: string, name: string, password: string, role: string) {
+  async editUser(name: string, password: string, role: string) {
     let rol: Number;
-    if (role === 'Administrador') {
+    if (role === 'Operario') {
       rol = 1
-    } else if (role === 'Usuario') {
-      rol = 2
-    } else {
+    } else if (role === 'Administrador') {
       rol = 3
+    } else {
+      rol = 2
     }
-    await this.userservice.editUser(id, name, password, rol).subscribe(response => {
+    await this.userservice.editUser(this.user!._id, name, password, rol).subscribe(response => {
       if (response.acknowledged) {
         alert('Usuario editado correctamente.')
       } else {
         alert('Upps ocurrió un error.')
       }
+      this.refresh.emit();
     });
   }
 

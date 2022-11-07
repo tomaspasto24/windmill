@@ -1,31 +1,39 @@
 <div>
-    <div class="row" id="lista">
+  <div class="row" id="lista">
+  </div>
+
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Crear Usuario</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
     </div>
-    
-    <ng-template #mymodal let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Crear Usuario</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <input #nameInput type="text" class="form-control" aria-label="Sizing example input"
+    <input #nameInput type="text" class="form-control" aria-label="Sizing example input"
       aria-describedby="inputGroup-sizing-lg" placeholder="Name" required="required">
-      <input #passwordInput type="password" class="form-control" aria-label="Sizing example input"
+    <input #passwordInput type="password" class="form-control" aria-label="Sizing example input"
       aria-describedby="inputGroup-sizing-lg" placeholder="Password" required="required">
-      <input #password2Input type="password" class="form-control" aria-label="Sizing example input"
+    <input #password2Input type="password" class="form-control" aria-label="Sizing example input"
       aria-describedby="inputGroup-sizing-lg" placeholder="Confirm password" required="required">
-      <input #roleInput type="text" class="form-control" aria-label="Sizing example input"
-      aria-describedby="inputGroup-sizing-lg" placeholder="Role" required="required">
-      <div class="modal-body">
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="modal.close()">Cerrar</button>
-        <button type="button" class="btn btn-primary" id="addUserButton" (click)="registerUser(nameInput.value, passwordInput.value, password2Input.value, roleInput.value)">Crear</button>
-      </div>
-    </ng-template>
-    
+
+    <label for="select" class="select">
+      <select class="subject" id="select" #roleInput>
+        <option selected>Operario</option>
+        <option>Administrador</option>
+        <option>Auditor</option>
+      </select>
+    </label>
+    <div class="modal-body">
+
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close()">Cerrar</button>
+      <button type="button" class="btn btn-primary" id="addUserButton"
+        (click)="registerUser(nameInput.value, passwordInput.value, password2Input.value, roleInput.value); modal.close()">Crear</button>
+    </div>
+  </ng-template>
+
 </div>
 <button type="button" class="btn btn-primary btn-lg btnn" (click)="open(mymodal)">
   +
