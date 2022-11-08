@@ -9,12 +9,9 @@ import { AdminScreenComponent } from './admin-screen/admin-screen.component';
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  { path: 'admin', component: AdminScreenComponent, canActivate: [AuthGuard],
-    children: [
-      { path: 'prototypes', component: AbmPrototypesScreenComponent}, //J
-      { path: 'prototype-detail/:id', component: PrototypeDetailScreenComponent}, //J
-    ]
-  },
+  { path: 'admin', component: AdminScreenComponent, canActivate: [AuthGuard]},
+  { path: 'prototypes', component: AbmPrototypesScreenComponent}, //J
+  { path: 'prototype-detail/:id', component: PrototypeDetailScreenComponent},
   { path: 'works', component: WorkScreenComponent }, //T
   { path: 'login', component: LoginScreenComponent }, //T
   { path: 'pieces', component: AbmPiezasScreenComponent }, //T
