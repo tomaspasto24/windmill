@@ -25,7 +25,7 @@
     <div class="container mt-5 ">
         <div class="row form-group">
             <div class="col mb-5 cardContainer" *ngFor="let piece of pieces">
-                <app-piece-card [allowEdit]="true" [piece]="piece"></app-piece-card>
+                <app-piece-card [allowEdit]="true" [piece]="piece" (refresh)="deletePiece($event)"></app-piece-card>
             </div>
         </div>
     </div>
@@ -37,44 +37,47 @@
 
                 <form action="" class="contact">
                     <fieldset class="contact-inner">
-                    
+
                         <p class="modal-input">
-                            <input #nameInput id="wrapper" type="text" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-lg" placeholder="Name" required="required">
+                            <input #nameInput id="wrapper" type="text" class="form-control"
+                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"
+                                placeholder="Name" required="required">
                         </p>
-                        
+
 
                         <input #photoInput type="file" class="form-control d-block" id="customFile1"
-                            (change)="processFile(photoInput)"/>
-                            
+                            (change)="processFile(photoInput)" />
+
                         <p class="modal-input">
-                            <input #airResistanceInput id="wrapper" type="number" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-lg" placeholder="Air Resistance" required="required">
+                            <input #airResistanceInput id="wrapper" type="number" class="form-control"
+                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"
+                                placeholder="Air Resistance" required="required">
                         </p>
-                
+
                         <p class="modal-input">
-                        <label id="wrapper" for="select" class="select">
-                            <select class="subject" id="select" #typeInput>
-                                <option value="" selected>Type</option>
-                                <option>Aspa</option>
-                                <option>Cuerpo</option>
-                                <option>Bas e</option>
-                            </select>
-                        </label>
+                            <label id="wrapper" for="select" class="select">
+                                <select class="subject" id="select" #typeInput>
+                                    <option value="" selected>Type</option>
+                                    <option>Aspa</option>
+                                    <option>Cuerpo</option>
+                                    <option>Base</option>
+                                </select>
+                            </label>
                         </p>
-                
+
                         <p class="modal-input">
-                            <input #materialInput id="wrapper" type="text" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-lg" placeholder="Material" required="required">
+                            <input #materialInput id="wrapper" type="text" class="form-control"
+                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"
+                                placeholder="Material" required="required">
                         </p>
-                        
+
                     </fieldset>
-                
+
                     <p>
                         <span class="cancel" id="contact-submit">
                             <input type="button" value="Cancelar" (click)="modal.close();">
                         </span>
-    
+
                         <span class="contact-submit" id="contact-submit">
                             <input type="button" value="Añadir Pieza" (click)="postCard(nameInput.value, airResistanceInput.valueAsNumber, materialInput.value, typeInput.value);
                             modal.close();">
@@ -85,9 +88,8 @@
 
     </ng-template>
 
-    
+
 
     <fa-icon [icon]="faPlus" class="plus" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"
         (click)="open(addModal)"></fa-icon>
 </div>
-

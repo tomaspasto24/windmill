@@ -1,3 +1,4 @@
+import { GetCodePasswordScreenComponent } from './get-code-password-screen/get-code-password-screen.component';
 import { AbmPiezasScreenComponent } from './abm-piezas-screen/abm-piezas-screen.component';
 import { LoginScreenComponent } from './login-screen/login-screen.component';
 import { WorkScreenComponent } from './work-screen/work-screen.component';
@@ -6,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PrototypeDetailScreenComponent } from './prototype-detail-screen/prototype-detail-screen.component';
 import { AbmPrototypesScreenComponent } from './abm-prototypes-screen/abm-prototypes-screen.component';
 import { AdminScreenComponent } from './admin-screen/admin-screen.component';
-import { AuthGuard } from './auth/auth.guard';
+import { RecoverPasswordScreenComponent } from './recover-password-screen/recover-password-screen.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminScreenComponent, canActivate: [AuthGuard]},

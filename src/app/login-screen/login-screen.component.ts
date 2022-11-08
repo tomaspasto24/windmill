@@ -33,4 +33,9 @@ export class LoginScreenComponent implements OnInit {
       }
     });
   }
+
+  resetPassword() {
+    this.router.navigate(['/getemail-password']);
+  }
+
 }

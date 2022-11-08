@@ -19,6 +19,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { HttpClientModule } from '@angular/common/http';
+import { RecoverPasswordScreenComponent } from './recover-password-screen/recover-password-screen.component';
+import { GetCodePasswordScreenComponent } from './get-code-password-screen/get-code-password-screen.component';
+import { UserCardComponent } from './user-card/user-card.component';
+import { AddUserBtnComponent } from './add-user-btn/add-user-btn.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,10 @@ import { HttpClientModule } from '@angular/common/http';
     PieceCardComponent,
     AdminScreenComponent,
     WindmillModelComponent,
+    RecoverPasswordScreenComponent,
+    GetCodePasswordScreenComponent,
+    UserCardComponent,
+    AddUserBtnComponent,
   ],
   imports: [
     BrowserModule,
