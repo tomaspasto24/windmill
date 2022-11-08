@@ -23,6 +23,7 @@ import { RecoverPasswordScreenComponent } from './recover-password-screen/recove
 import { GetCodePasswordScreenComponent } from './get-code-password-screen/get-code-password-screen.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { AddUserBtnComponent } from './add-user-btn/add-user-btn.component';
+import { ApprovedScreenComponent } from './approved-screen/approved-screen.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AddUserBtnComponent } from './add-user-btn/add-user-btn.component';
     GetCodePasswordScreenComponent,
     UserCardComponent,
     AddUserBtnComponent,
+    ApprovedScreenComponent,
   ],
   imports: [
     BrowserModule,
