@@ -8,7 +8,7 @@ export interface Piece{
 }
 
 export enum PieceType{
-    Blade = 'Blade',
-    Body = 'Body',
+    Blade = 'Aspa',
+    Body = 'Cuerpo',
     Base = 'Base',
 }

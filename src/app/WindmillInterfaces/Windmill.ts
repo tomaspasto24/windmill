@@ -7,6 +7,6 @@ export interface Windmill{
     blade: Piece,
     body: Piece,
     base: Piece,
-    creator: User,
+    creator: String,
     validated: false
 }

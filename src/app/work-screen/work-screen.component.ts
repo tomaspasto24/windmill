@@ -1,3 +1,4 @@
+import { UserService } from './../user.service';
 import { PieceType } from './../WindmillInterfaces/Piece';
 import { Router } from '@angular/router';
 import { PiecesService } from './../pieces.service';
@@ -14,12 +15,6 @@ import { CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@a
 
 export class WorkScreenComponent implements OnInit {
 
-  constructor(private servicePiece: PiecesService, private router: Router) { }
-
-  ngOnInit(): void {
-    this.filtrarPiezas();
-  }
-
   // Necesitamos separar si o si en tres colecciones para que podamos evitar que
   // se ingresen piezas en los lugares donde no van. Por ejemplo, para evitar que
   // se agregen un aspa en el lugar del cuerpo. 
@@ -31,11 +26,17 @@ export class WorkScreenComponent implements OnInit {
   cuerpoSeleccionado: Piece[] = [];
   baseSeleccionada: Piece[] = [];
 
-  // postPrototype() {
-  //   if (this.aspaSeleccionada.length !== 0 && this.cuerpoSeleccionado.length !== 0 && this.baseSeleccionada.length !== 0) {
-  //     postPrototype()
-  //   }
-  // }
+  constructor(private router: Router, private pieceService: PiecesService, private userservice: UserService) { }
+
+  ngOnInit(): void {
+    this.filterAllPieces();
+  }
+
+  messageError: String = "Se deben insertar piezas en todos los campos para poder confirmar un modelo.";
+  messageErrorTittle: String = "Error al intentar agregar el modelo";
+
+  messageOk: String = "El modelo fue creado con éxito.";
+  messageOkTittle: String = "Creación del modelo";
 
   drop(event: CdkDragDrop<Piece[]>, arrayDestino: Piece[]) {
     if (arrayDestino[0] == null) {
@@ -58,18 +59,33 @@ export class WorkScreenComponent implements OnInit {
     }
   }
 
-  filtrarPiezas() {
-    const observable = this.servicePiece.getPieces();
+  filter(filtered: Piece[]) {
+    this.limpiarArraysDePiezas();
+    filtered.forEach((piece) => {
+      if (piece.type == PieceType.Blade) {
+        this.aspasDisponibles.push(piece);
+      } else if (piece.type == PieceType.Base) {
+        this.basesDisponibles.push(piece);
+      } else {
+        console.log(piece.type)
+        this.cuerposDisponibles.push(piece);
+      }
+    });
+  }
+
+  filterAllPieces() {
+    this.limpiarArraysDePiezas();
+    const observable = this.pieceService.getPieces();
     observable.subscribe(response => {
-      (response as Piece[]).forEach((pieza) => {
-        if (pieza.type == PieceType.Blade) {
-          this.aspasDisponibles.push(pieza);
-        } else if (pieza.type == PieceType.Base) {
-          this.basesDisponibles.push(pieza);
+      (response as Piece[]).forEach((piece) => {
+        if (piece.type == PieceType.Blade) {
+          this.aspasDisponibles.push(piece);
+        } else if (piece.type == PieceType.Base) {
+          this.basesDisponibles.push(piece);
         } else {
-          this.cuerposDisponibles.push(pieza);
+          this.cuerposDisponibles.push(piece);
         }
-      });
+      })
     });
   }
 
@@ -81,5 +97,44 @@ export class WorkScreenComponent implements OnInit {
     } else {
       return this.cuerposDisponibles;
     }
+  }
+
+  comenzarArmado() {
+    const blade = this.aspaSeleccionada[0]; 
+    const body = this.cuerpoSeleccionado[0]; 
+    const base = this.baseSeleccionada[0];
+    const creatorName = this.userservice.user?.name;
+
+    if(blade !== undefined && body !== undefined && base !== undefined && creatorName !== undefined) {
+      const prototype = {
+        name: "",
+        blade,
+        body,
+        base,
+        creator: creatorName,
+        validated: false
+      }
+      console.log(prototype)
+    } else {
+      alert('Debe rellenar las tres piezas.')
+    }
+    
+  }
+
+  reestablecer() {
+    this.limpiarWorkspace();
+  }
+
+  limpiarWorkspace() {
+    delete (this.aspaSeleccionada[0]);
+    delete (this.cuerpoSeleccionado[0]);
+    delete (this.baseSeleccionada[0]);
+    this.filterAllPieces();
+  }
+
+  limpiarArraysDePiezas() {
+    this.aspasDisponibles = [];
+    this.cuerposDisponibles = [];
+    this.basesDisponibles = [];
   }
 }
