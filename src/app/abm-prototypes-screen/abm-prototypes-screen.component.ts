@@ -1,3 +1,4 @@
+import { ValidatedType } from './../WindmillInterfaces/Windmill';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { Component, OnInit, Input } from '@angular/core';
 import { ValidatedType, Windmill } from '../WindmillInterfaces/Windmill';
@@ -23,7 +24,7 @@ export class AbmPrototypesScreenComponent implements OnInit {
 
   getPrototypes(){
     this.prototypeService.getPrototypes().subscribe(data => {
-      this.prototypes = data as Windmill[];
+      this.prototypes = (data as Windmill[]).filter(windmill => windmill.validated === ValidatedType.pendiente);
     });
   }
 
