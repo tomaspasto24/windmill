@@ -17,14 +17,21 @@ export class PrototypeService {
   getPrototypes(): Observable<Windmill[]> {
     return this.http.get<Windmill[]>(this.url);
   }
-  
+
   getPrototypeById(id: string): Observable<Windmill[]> {
     const url = `${this.url}/${id}`
     return this.http.get<Windmill[]>(url);
   }
 
-  postPrototype(name: string, blade: Piece, body: Piece, base: Piece, creator: User): Observable<void> {
-    return this.http.post<void>(this.url, { name, blade, body, base, creator });
+  postPrototype(name: string, description: string, blade: Piece, body: Piece, base: Piece, creator: string): Observable<void> {
+    return this.http.post<void>(this.url, {
+      name,
+      description,
+      blade,
+      body,
+      base,
+      creator
+    });
   }
 
   deletePrototype(id: string): Observable<any> {

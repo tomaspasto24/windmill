@@ -1,92 +1,98 @@
-<div class="row">
-    <div class="dashboard scroller col-6" cdkDropListGroup>
-        <div cdkDropList #aspas="cdkDropList" [cdkDropListData]="aspasDisponibles" [cdkDropListConnectedTo]="[aspa]"
-            class="cards">
-            <div class="row form-group" *ngFor="let aspa of aspasDisponibles" cdkDrag>
-                <div class="col cardContainer">
+<div class="content">
+    <div class="cards-scroller vh-100">
+        <div class="filter">
+            <app-piece-card></app-piece-card>
+        </div>
+        <div class="row form-group text-center" cdkDropListGroup>
+            <div cdkDropList #aspas="cdkDropList" [cdkDropListData]="aspasDisponibles" [cdkDropListConnectedTo]="[aspa]"
+                class="cards">
+                <div class="cards-box" *ngFor="let aspa of aspasDisponibles" cdkDrag>
                     <app-piece-card [piece]="aspa"></app-piece-card>
                 </div>
             </div>
-        </div>
-        <div cdkDropList #cuerpos="cdkDropList" [cdkDropListData]="cuerposDisponibles"
-            [cdkDropListConnectedTo]="[cuerpo]" class="cards">
-            <div class="row form-group" *ngFor="let cuerpo of cuerposDisponibles" cdkDrag>
-                <div class="col cardContainer">
+            <div cdkDropList #cuerpos="cdkDropList" [cdkDropListData]="cuerposDisponibles"
+                [cdkDropListConnectedTo]="[cuerpo]" class="cards">
+                <div class="cards-box" *ngFor="let cuerpo of cuerposDisponibles" cdkDrag>
                     <app-piece-card [piece]="cuerpo"></app-piece-card>
                 </div>
             </div>
-        </div>
-        <div cdkDropList #bases="cdkDropList" [cdkDropListData]="basesDisponibles" [cdkDropListConnectedTo]="base"
-            class="cards">
-            <div class="row form-group" *ngFor="let base of basesDisponibles" cdkDrag>
-                <div class="col cardContainer">
+            <div cdkDropList #bases="cdkDropList" [cdkDropListData]="basesDisponibles" [cdkDropListConnectedTo]="base"
+                class="cards">
+                <div class="cards-box" *ngFor="let base of basesDisponibles" cdkDrag>
                     <app-piece-card [piece]="base"></app-piece-card>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="col-6">
-        <div class="content">
-            <div class="row text-center">
-                <div class="col-12 align-self-center">
-                    <div class="modelo">
-                        <h2>Aspa</h2>
-                        <div class="container contenedor-aspa" cdkDropList #aspa="cdkDropList"
-                            [cdkDropListData]="aspaSeleccionada" (cdkDropListDropped)="drop($event, aspaSeleccionada)">
-                            <div class="aspaSeleccionada" *ngIf="aspaSeleccionada[0] != null">
-                                <app-piece-card [piece]="aspaSeleccionada[0]"></app-piece-card>
-                            </div>
+    <div class="work-space vh-100">
+        <div class="row text-center">
+            <div class="col-12 align-self-center">
+                <div class="modelo">
+                    <h2>Aspa</h2>
+                    <div class="container contenedor-aspa" cdkDropList #aspa="cdkDropList"
+                        [cdkDropListData]="aspaSeleccionada" (cdkDropListDropped)="drop($event, aspaSeleccionada)">
+                        <div class="aspaSeleccionada" *ngIf="aspaSeleccionada[0] != null">
+                            <app-piece-card [piece]="aspaSeleccionada[0]"></app-piece-card>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 align-self-center">
-                    <div class="modelo">
-                        <h2>Cuerpo</h2>
-                        <div class="container contenedor-cuerpo" cdkDropList #cuerpo="cdkDropList"
-                            [cdkDropListData]="cuerpoSeleccionado"
-                            (cdkDropListDropped)="drop($event, cuerpoSeleccionado)">
-                            <div class="aspaSeleccionada" *ngIf="cuerpoSeleccionado[0] != null">
-                                <app-piece-card [piece]="cuerpoSeleccionado[0]"></app-piece-card>
-                            </div>
+            </div>
+            <div class="col-12 align-self-center">
+                <div class="modelo">
+                    <h2>Cuerpo</h2>
+                    <div class="container contenedor-cuerpo" cdkDropList #cuerpo="cdkDropList"
+                        [cdkDropListData]="cuerpoSeleccionado" (cdkDropListDropped)="drop($event, cuerpoSeleccionado)">
+                        <div class="aspaSeleccionada" *ngIf="cuerpoSeleccionado[0] != null">
+                            <app-piece-card [piece]="cuerpoSeleccionado[0]"></app-piece-card>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 align-self-cente r">
-                    <div class="modelo">
-                        <h2>Base</h2>
-                        <div class="container contenedor-base" cdkDropList #base="cdkDropList"
-                            [cdkDropListData]="baseSeleccionada" (cdkDropListDropped)="drop($event, baseSeleccionada)">
-                            <div class="aspaSeleccionada" *ngIf="baseSeleccionada[0] != null">
-                                <app-piece-card [piece]="baseSeleccionada[0]"></app-piece-card>
-                            </div>
+            </div>
+            <div class="col-12 align-self-center">
+                <div class="modelo">
+                    <h2 class="text">Base</h2>
+                    <div class="container contenedor-base" cdkDropList #base="cdkDropList"
+                        [cdkDropListData]="baseSeleccionada" (cdkDropListDropped)="drop($event, baseSeleccionada)">
+                        <div class="aspaSeleccionada" *ngIf="baseSeleccionada[0] != null">
+                            <app-piece-card [piece]="baseSeleccionada[0]"></app-piece-card>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-</div>
-
-<button type="button" class="btn btn-primary btn-lg btnn" >
-    +
-</button>
-
-
-
-
-
-
-<!-- <div cdkDropList [cdkDropListData]="todo" class="example-list" (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
-</div>
-
-<div class="example-container">
-    <h2>Done</h2>
-
-    <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+        <div class="container">
+            <div class="row justify-content-evenly">
+                <div class="col-auto me-auto">
+                    <button class="button-reestablecer" (click)="reestablecer()">REESTABLECER</button>
+                </div>
+                <div class="col-auto">
+                    <button class="button-confirmar" (click)="comenzarArmado()">CONFIRMAR MODELO</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-</div> -->
+
+
+
+
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Crear Molino</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+
+    <input #nameInput type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-lg" placeholder="Name" required="required">
+
+        <input #descriptionInput type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-lg" placeholder="Name" required="required">
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.close()">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="addUserButton"
+            (click)="comenzarArmado(nameInput.value, descriptionInput.value); modal.close()">Crear</button>
+    </div>
+</ng-template>
