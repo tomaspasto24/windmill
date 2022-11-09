@@ -2,6 +2,7 @@ import { UserService } from './../user.service';
 import { User } from './../WindmillInterfaces/User';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-card',
@@ -14,6 +15,9 @@ export class UserCardComponent implements OnInit {
 
   @Input() user: User | undefined;
   @Output() refresh = new EventEmitter<void>();
+
+  faEdit = faPenToSquare;
+  faDelete = faTrash;
 
   ngOnInit(): void {
   }
@@ -35,12 +39,12 @@ export class UserCardComponent implements OnInit {
     let rol: Number;
     if (role === 'Operario') {
       rol = 1
+    } else if (role === 'Auditor'){
+      rol = 2
     } else if (role === 'Administrador') {
       rol = 3
-    } else {
-      rol = 2
     }
-    await this.userservice.editUser(this.user!._id, name, password, rol).subscribe(response => {
+    await this.userservice.editUser(this.user!._id, name, password, rol!).subscribe(response => {
       if (response.acknowledged) {
         alert('Usuario editado correctamente.')
       } else {
@@ -71,4 +75,24 @@ export class UserCardComponent implements OnInit {
     }
   }
 
+  hiddenPasswordLength(){
+    var pssw = ' ';
+    for (let index = 0; index < this.user!.password.length; index++) {
+      pssw +=  '•';
+    }
+    return pssw;
+  }
+
+  showRole(){
+    if (this.user?.role === 3){
+      return 'Administrador';
+    }
+    else if (this.user?.role === 2){
+      return 'Auditor';
+    }
+    else if (this.user?.role === 1){
+      return 'Operario';
+    }
+    return 'undefined';
+  }
 }

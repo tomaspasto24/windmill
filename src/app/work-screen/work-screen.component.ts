@@ -1,11 +1,13 @@
 import { UserService } from './../user.service';
 import { PieceType } from './../WindmillInterfaces/Piece';
-import { Router } from '@angular/router';
+import { Router, UrlTree } from '@angular/router';
 import { PiecesService } from './../pieces.service';
 import { Component, OnInit } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { Piece } from '../WindmillInterfaces/Piece';
 import { CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { AuthService } from '../auth/auth.service';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 @Component({
   selector: 'app-work-screen',

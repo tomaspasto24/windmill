@@ -8,16 +8,15 @@ import { PrototypeDetailScreenComponent } from './prototype-detail-screen/protot
 import { AbmPrototypesScreenComponent } from './abm-prototypes-screen/abm-prototypes-screen.component';
 import { AdminScreenComponent } from './admin-screen/admin-screen.component';
 import { RecoverPasswordScreenComponent } from './recover-password-screen/recover-password-screen.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  { path: 'admin', component: AdminScreenComponent},
-  { path: 'works', component: WorkScreenComponent }, // T 
-  { path: 'login', component: LoginScreenComponent }, // T
-  { path: 'pieces', component: AbmPiezasScreenComponent }, // T 
-  { path: 'recover-password/:code', component: RecoverPasswordScreenComponent }, // T
-  { path: 'getemail-password', component: GetCodePasswordScreenComponent }, // T
-  { path: 'prototypes', component: AbmPrototypesScreenComponent}, // J
-  { path: 'prototype-detail/:id', component: PrototypeDetailScreenComponent}, // J
+  { path: 'admin', component: AdminScreenComponent, canActivate: [AuthGuard]},
+  { path: 'prototypes', component: AbmPrototypesScreenComponent}, //J
+  { path: 'prototype-detail/:id', component: PrototypeDetailScreenComponent},
+  { path: 'works', component: WorkScreenComponent }, //T
+  { path: 'login', component: LoginScreenComponent }, //T
+  { path: 'pieces', component: AbmPiezasScreenComponent }, //T
   { path: '',   redirectTo: 'login', pathMatch: 'full' }
 ];
 

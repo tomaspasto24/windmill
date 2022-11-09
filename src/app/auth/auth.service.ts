@@ -1,48 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, delay, tap} from 'rxjs';
-import { User } from '../WindmillInterfaces/User';
 import { UserService } from '../user.service';
+import { SessionService } from './session.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private userService: UserService){}
-
-  isLoggedIn = -1;
+  constructor(private userService: UserService, private sessionService: SessionService){}
 
   redirectUrl: string | null = null;
-
-  login(): Observable<number> {
-
-    console.log(this.userService.user!.role);
-    if (this.userService.user!.role === 1){
-      return of (1).pipe(
-        delay(1000),
-        tap(() => this.isLoggedIn = 1)
-      );
-    }
-    if (this.userService.user!.role === 2){
-      return of (2).pipe(
-        delay(1000),
-        tap(() => this.isLoggedIn = 2)
-      );
-    }
-    if (this.userService.user!.role === 3){
-      return of (3).pipe(
-        delay(1000),
-        tap(() => this.isLoggedIn = 3)
-      );
-    }
-
-    return of (-1).pipe(
-      delay(1000),
-      tap(() => this.isLoggedIn = -1)
-    );
+  isLoggedIn!: '';
+  login(): void {
+    this.sessionService.saveData('isLoggedIn', 'true');
+    this.userService.saveUser();
   }
 
-  logout(): void {
-    this.isLoggedIn = -1;
+  logout(isLoggedIn: boolean): void {
+    isLoggedIn = false;
   }
 }
