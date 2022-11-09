@@ -108,7 +108,14 @@ export class WorkScreenComponent implements OnInit {
     const creatorName = this.userservice.user?.name;
 
     if(blade !== undefined && body !== undefined && base !== undefined && creatorName !== undefined) {
-      this.prototypeService.postPrototype(name, description, blade, body, base, creatorName);
+      this.prototypeService.postPrototype(name, description, blade, body, base, creatorName).subscribe(response => {
+        if(response.error) {
+          alert('Upps ocurrió un error')
+        } else {
+          alert('Molino posteado correctamente, pendiente de aprobación por un auditor.')
+          this.reestablecer();
+        }
+      });
     } else {
       alert('Debe rellenar las tres piezas.')
     }
@@ -133,12 +140,21 @@ export class WorkScreenComponent implements OnInit {
   }
 
   open(content:any) : any {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-    return content;
+    const blade = this.aspaSeleccionada[0]; 
+    const body = this.cuerpoSeleccionado[0]; 
+    const base = this.baseSeleccionada[0];
+    const creatorName = this.userservice.user?.name;
+
+    if(blade !== undefined && body !== undefined && base !== undefined && creatorName !== undefined) {
+      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+      return content;
+    } else {
+      alert('Debe completar las tres piezas.')
+    }
   }
   
   private getDismissReason(reason: any): string {

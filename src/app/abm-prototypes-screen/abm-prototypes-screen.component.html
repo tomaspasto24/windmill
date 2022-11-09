@@ -18,13 +18,18 @@
         </div>
     </div>
     
-    <div class="container mt-5 ">
+    <!-- <div class="container mt-5 ">
         <div class="row form-group">
-            <li *ngFor="let windmill of prototypes"> \
+            <li *ngFor="let windmill of prototypes"> 
                 {{windmill.blade.photo}},
                 {{windmill.body.photo}},
                 {{windmill.base.photo}}
             </li>
+        </div>
+    </div> -->
+    <div class="container mt-5 ">
+        <div class="row form-group" *ngFor="let windmill of prototypes">
+            <app-prototype-card [windmill]="windmill" (refresh)="getPrototypes()"></app-prototype-card>
         </div>
     </div>
 </div>

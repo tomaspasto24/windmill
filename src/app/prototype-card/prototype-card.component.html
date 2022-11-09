@@ -2,41 +2,30 @@
     <div class="card mb-3" style="width: 1000px;">
         <div class="row no-gutters">
             <div class="col">
-                <img src="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg" class="card-img" alt="...">
+                <ngb-carousel #carousel [interval]="2000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus"
+                    (slide)="onSlide($event)">
+                    <ng-template ngbSlide *ngFor="let img of imagesToShow; index as i">
+                            <div class="picsum-img-wrapper">
+                                <img [src]="img" class="card-img" />
+                            </div>
+                    </ng-template>
+                </ngb-carousel>
             </div>
-            <div class="col-md-6" routerLink="/prototype-detail/5" type="button">
+            <div class="col-md-6" routerLink="/prototype-detail/{{windmill?._id}}" type="button">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <h3 class="card-title">{{windmill?.name}}</h3>
+                    <p class="card-text">{{windmill?.description}}</p>
+                    <p class="card-text"><small class="text-muted">{{windmill?.creator}}</small></p>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="row text-center">
-                    <fa-icon [icon]="faWrong" class="icon wrong"></fa-icon>
-                    <fa-icon [icon]="faCheck" class="icon check"></fa-icon>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card mb-3" style="width: 1000px;">
-        <div class="row no-gutters">
-            <div class="col">
-                <img src="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg" class="card-img" alt="...">
-            </div>
-            <div class="col-md-6" routerLink="/prototype-detail/5" type="button">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="row text-center">
-                    <fa-icon [icon]="faWrong" class="icon wrong"></fa-icon>
-                    <fa-icon [icon]="faCheck" class="icon check"></fa-icon>
+                    <span (click)="rechazar()">
+                        <fa-icon [icon]="faWrong" class="icon wrong mt-2" type="button"></fa-icon>
+                    </span>
+                    <span (click)="aprobar()">
+                        <fa-icon [icon]="faCheck" class="icon check mt-3 mb-2" type="button"></fa-icon>
+                    </span>
                 </div>
             </div>
         </div>
