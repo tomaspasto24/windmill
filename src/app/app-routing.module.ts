@@ -8,6 +8,7 @@ import { PrototypeDetailScreenComponent } from './prototype-detail-screen/protot
 import { AbmPrototypesScreenComponent } from './abm-prototypes-screen/abm-prototypes-screen.component';
 import { AdminScreenComponent } from './admin-screen/admin-screen.component';
 import { RecoverPasswordScreenComponent } from './recover-password-screen/recover-password-screen.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: 'admin', component: AdminScreenComponent, canActivate: [AuthGuard]},

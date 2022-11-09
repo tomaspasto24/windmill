@@ -2,6 +2,7 @@ import { UserService } from './../user.service';
 import { User } from './../WindmillInterfaces/User';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-card',
@@ -14,6 +15,9 @@ export class UserCardComponent implements OnInit {
 
   @Input() user: User | undefined;
   @Output() refresh = new EventEmitter<void>();
+
+  faEdit = faPenToSquare;
+  faDelete = faTrash;
 
   ngOnInit(): void {
   }
@@ -69,6 +73,14 @@ export class UserCardComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  hiddenPasswordLength(){
+    var pssw = ' ';
+    for (let index = 0; index < this.user!.password.length; index++) {
+      pssw +=  '•';
+    }
+    return pssw;
   }
 
 }

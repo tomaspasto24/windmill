@@ -26,7 +26,7 @@ export class LoginScreenComponent implements OnInit {
           _id: response.userData._id,
           name: response.userData.name,
           role: response.userData.rol,
-          password: response.userData.password
+          password: response.userData.password,
         }, response.token);
         this.authService.login();
         this.router.navigate(['/works']);

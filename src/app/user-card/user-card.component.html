@@ -1,11 +1,23 @@
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Nombre {{user!.name}}</h5>
-    <p class="card-text" *ngIf="user!.role === 1">Operario</p>
-    <p class="card-text" *ngIf="user!.role === 2">Auditor</p>
-    <p class="card-text" *ngIf="user!.role === 3">Administrador</p>
-    <a class="btn btn-warning" (click)="open(mymodal)">Editar</a>
-    <a class="btn btn-danger ms-4" (click)="deleteUser()">Eliminar</a>
+<div class="container">
+  <div class="box">
+    <div class="top">
+      <div class="profile"></div>
+      <h1 class="title">{{user!.name}}</h1>
+    </div>
+    <div class="bottom">
+      <ul>
+        <h3>{{user!._id}}</h3>
+        <p>{{hiddenPasswordLength()}}</p>
+      </ul>
+      <p>
+        <span id="delete">
+          <fa-icon type="button" [icon]="faDelete" (click)="deleteUser()"></fa-icon>
+        </span>
+        
+        <span id="edit">
+          <fa-icon type="button" [icon]="faEdit" (click)="open(mymodal)"></fa-icon>
+        </span>
+      </p>
   </div>
 </div>
 

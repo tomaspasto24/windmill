@@ -23,7 +23,6 @@ export class AuthGuard implements CanActivate {
 
   checkLogin(url: string): true|UrlTree{
     if (this.localService.getData('isLoggedIn') === 'true'){
-      console.log(this.user?.role);
       if (this.localService.getData('role') === '2'){
         return true;
       }

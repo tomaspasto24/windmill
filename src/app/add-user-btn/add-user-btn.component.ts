@@ -22,9 +22,15 @@ export class AddUserBtnComponent implements OnInit {
     let rolNumerico: number; 
     rol = rol.toLowerCase();
     if(rol === "admin" || rol === "administrador") {
-      rolNumerico = 1
-    } else {
-      rolNumerico = 0
+      rolNumerico = 3;
+    } else if (rol === "Auditor") {
+      rolNumerico = 2;
+    }
+    else if (rol === "Operario"){
+      rolNumerico = 1;
+    }
+    else{
+      rolNumerico = 0;
     }
     if(password !== password2) {
       alert('Contraseñas no coinciden');
