@@ -1,6 +1,6 @@
 <div class="content">
     <div class="cards-scroller vh-100">
-        <div class="filter">          
+        <div class="filter">
             <app-piece-card></app-piece-card>
         </div>
         <div class="row form-group text-center" cdkDropListGroup>
@@ -71,31 +71,28 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-</div>
-=======
-
 </div>
 
-<button type="button" class="btn btn-primary btn-lg btnn" >
-    +
-</button>
 
 
 
-
-
-
-<!-- <div cdkDropList [cdkDropListData]="todo" class="example-list" (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
-</div>
-
-<div class="example-container">
-    <h2>Done</h2>
-
-    <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Crear Molino</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
     </div>
-</div>
-</div> -->
->>>>>>> windmill/Juanma
+
+    <input #nameInput type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-lg" placeholder="Name" required="required">
+
+        <input #descriptionInput type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-lg" placeholder="Name" required="required">
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.close()">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="addUserButton"
+            (click)="comenzarArmado(nameInput.value, descriptionInput.value); modal.close()">Crear</button>
+    </div>
+</ng-template>

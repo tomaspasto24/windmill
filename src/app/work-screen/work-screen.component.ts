@@ -1,3 +1,4 @@
+import { PrototypeService } from './../prototype.service';
 import { UserService } from './../user.service';
 import { PieceType } from './../WindmillInterfaces/Piece';
 import { Router, UrlTree } from '@angular/router';
@@ -8,6 +9,7 @@ import { Piece } from '../WindmillInterfaces/Piece';
 import { CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AuthService } from '../auth/auth.service';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-work-screen',
@@ -17,9 +19,6 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 export class WorkScreenComponent implements OnInit {
 
-  // Necesitamos separar si o si en tres colecciones para que podamos evitar que
-  // se ingresen piezas en los lugares donde no van. Por ejemplo, para evitar que
-  // se agregen un aspa en el lugar del cuerpo. 
   aspasDisponibles: Piece[] = [];
   cuerposDisponibles: Piece[] = [];
   basesDisponibles: Piece[] = [];
@@ -28,12 +27,13 @@ export class WorkScreenComponent implements OnInit {
   cuerpoSeleccionado: Piece[] = [];
   baseSeleccionada: Piece[] = [];
 
-  constructor(private router: Router, private pieceService: PiecesService, private userservice: UserService) { }
+  constructor(private router: Router, private pieceService: PiecesService, private userservice: UserService, private modalService: NgbModal, private prototypeService: PrototypeService) { }
 
   ngOnInit(): void {
     this.filterAllPieces();
   }
 
+  closeResult: string = '';
   messageError: String = "Se deben insertar piezas en todos los campos para poder confirmar un modelo.";
   messageErrorTittle: String = "Error al intentar agregar el modelo";
 
@@ -101,22 +101,14 @@ export class WorkScreenComponent implements OnInit {
     }
   }
 
-  comenzarArmado() {
+  comenzarArmado(name: string, description: string) {
     const blade = this.aspaSeleccionada[0]; 
     const body = this.cuerpoSeleccionado[0]; 
     const base = this.baseSeleccionada[0];
     const creatorName = this.userservice.user?.name;
 
     if(blade !== undefined && body !== undefined && base !== undefined && creatorName !== undefined) {
-      const prototype = {
-        name: "",
-        blade,
-        body,
-        base,
-        creator: creatorName,
-        validated: false
-      }
-      console.log(prototype)
+      this.prototypeService.postPrototype(name, description, blade, body, base, creatorName);
     } else {
       alert('Debe rellenar las tres piezas.')
     }
@@ -138,5 +130,24 @@ export class WorkScreenComponent implements OnInit {
     this.aspasDisponibles = [];
     this.cuerposDisponibles = [];
     this.basesDisponibles = [];
+  }
+
+  open(content:any) : any {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+    return content;
+  }
+  
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 }
