@@ -1,8 +1,9 @@
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { Component, OnInit, Input } from '@angular/core';
-import { Windmill } from '../WindmillInterfaces/Windmill';
+import { ValidatedType, Windmill } from '../WindmillInterfaces/Windmill';
 import { PrototypeService } from '../prototype.service';
 import { ApprovedScreenComponent } from '../approved-screen/approved-screen.component';
+
 @Component({
   selector: 'app-abm-prototypes-screen',
   templateUrl: './abm-prototypes-screen.component.html',
@@ -27,6 +28,9 @@ export class AbmPrototypesScreenComponent implements OnInit {
   }
 
   approvePrototype(){
-    this.windmill?.validated
+    this.windmill!.validated = ValidatedType.aprobado;
+    this.prototypeService.getPrototypes().subscribe(data => {
+      this.approvedPrototypes.approved = data as Windmill[];
+    });
   }
 }
