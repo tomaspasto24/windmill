@@ -60,20 +60,17 @@
                 <p><strong>Material: </strong> {{windmill?.blade?.material}}</p>
 			</div>
             <div class="mb-5">
+				<h2>Cuerpo</h2>
+                <p><strong>Nombre: </strong> {{windmill?.body?.name}}</p>
+                <p><strong>Resistencia al aire: </strong> {{windmill?.body?.airResistance}}</p>
+                <p><strong>Material: </strong> {{windmill?.body?.material}}</p>
+			</div>
+            <div class="mb-5">
 				<h2>Base</h2>
                 <p><strong>Nombre: </strong> {{windmill?.base?.name}}</p>
                 <p><strong>Resistencia al aire: </strong> {{windmill?.base?.airResistance}}</p>
                 <p><strong>Material: </strong> {{windmill?.base?.material}}</p>
 			</div>
-            <div class="mb-5">
-				<h2>Aspa</h2>
-                <p><strong>Nombre: </strong> {{windmill?.body?.name}}</p>
-                <p><strong>Resistencia al aire: </strong> {{windmill?.body?.airResistance}}</p>
-                <p><strong>Material: </strong> {{windmill?.body?.material}}</p>
-			</div>
 		</form>
-		<div class="text-end">
-			<button type="button" class="btn btn-outline-dark" (click)="offcanvas.close('Save click')">Save</button>
-		</div>
 	</div>
 </ng-template>
