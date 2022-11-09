@@ -1,8 +1,8 @@
 .check{
     font-size: 80px;
     position: fixed;
-    bottom: 0vmax;
-    right: 0vmax;
+    bottom: 5vmax;
+    right: 5vmax;
     padding: 10px 16px;
     z-index: 1;
 }
@@ -21,9 +21,25 @@
 .cross{
     font-size: 80px;
     position: fixed;
-    left: 0vmax;
-    bottom: 0vmax;
+    left: 5vmax;
+    bottom: 5vmax;
     padding: 10px 16px;
     z-index: 1;
 }
 
+.btnOptionsHidden {
+    visibility: hidden;
+}
+
+.container {
+    height: calc(100vh + 250px);
+}
+
+.img { 
+    height: 500px;
+    width: 500px;
+}
+
+.canvaOff {
+    height: 1000px;
+}

@@ -3,33 +3,30 @@
         <div class="row justify-content-right">
             <div class="col-4">
                 <div class="input-group">
-                    <input class="form-control form-control-lg" type="text" placeholder="Filtro 1"
-                    aria-label=".form-control-lg example">
-                    <span class="input-group-text transparent left-border-none"> <fa-icon [icon]="faBars"></fa-icon></span>
+                    <input #category class="form-control form-control-lg" type="text" placeholder="Filtrar por titulo"
+                        aria-label=".form-control-lg example" (input)="filterPrototypesTitle(category.value)">
+                    <span class="input-group-text transparent left-border-none">
+                        <fa-icon [icon]="faBars"></fa-icon>
+                    </span>
                 </div>
             </div>
             <div class="col-4">
-                <div class="input-group">
-                    <input class="form-control form-control-lg" type="text" placeholder="Filtro 2"
-                    aria-label=".form-control-lg example">
-                    <span class="input-group-text transparent left-border-none"> <fa-icon [icon]="faBars"></fa-icon></span>
-                </div>
+                <section>
+                    <mat-button-toggle-group #group="matButtonToggleGroup" (change)="changeBtnFilterHandler(group.value)" aria-label="Font Style">
+                        <mat-button-toggle value="Aprobados">Aprobados</mat-button-toggle>
+                        <mat-button-toggle value="Pendientes">Pendientes</mat-button-toggle>
+                        <mat-button-toggle value="Rechazados">Rechazados</mat-button-toggle>
+                        <mat-button-toggle value="Todos">Todos</mat-button-toggle>
+                    </mat-button-toggle-group>
+                </section>
             </div>
         </div>
+
     </div>
-    
-    <!-- <div class="container mt-5 ">
-        <div class="row form-group">
-            <li *ngFor="let windmill of prototypes"> 
-                {{windmill.blade.photo}},
-                {{windmill.body.photo}},
-                {{windmill.base.photo}}
-            </li>
-        </div>
-    </div> -->
+
     <div class="container mt-5 ">
         <div class="row form-group" *ngFor="let windmill of prototypes">
-            <app-prototype-card [windmill]="windmill" (refresh)="getPrototypes()"></app-prototype-card>
+            <app-prototype-card [windmill]="windmill" (refresh)="refresh()"></app-prototype-card>
         </div>
     </div>
 </div>

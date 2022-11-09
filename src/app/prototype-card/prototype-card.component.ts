@@ -25,7 +25,7 @@ export class PrototypeCardComponent implements OnInit {
 
   @Input() windmill: Windmill | undefined;
 
-  @Output() refresh = new EventEmitter<void>();
+  @Output() refresh = new EventEmitter<string>();
 
   imagesToShow: any[] = [];
 
@@ -98,7 +98,7 @@ export class PrototypeCardComponent implements OnInit {
       this.prototypeService.rechazarPrototype(id).subscribe(response => {
         if (response.acknowledged) {
           alert('Molino rechazado satisfactoriamente.');
-          this.refresh.emit();
+          this.refresh.emit(id as string);
         } else {
           alert('Ocurrió un error');
         }
@@ -112,7 +112,7 @@ export class PrototypeCardComponent implements OnInit {
       this.prototypeService.aprobarPrototype(id).subscribe(response => {
         if (response.acknowledged) {
           alert('Molino aprobado satisfactoriamente.');
-          this.refresh.emit();
+          this.refresh.emit(id as string);
         } else {
           alert('Ocurrió un error');
         }

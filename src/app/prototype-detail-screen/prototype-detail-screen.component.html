@@ -1,15 +1,79 @@
 <div class="container text-end">
-    <div class="row h-100 justify-content-center">
+    <div class="row justify-content-center">
 
-        <div class="card align-self-center">
-            <app-piece-card></app-piece-card>
+        <div class="card text-center align-self-center">
+            <ngb-carousel *ngIf="imagesToShow">
+                <ng-template ngbSlide>
+                    <div class="picsum-img-wrapper">
+                        <img [src]="imagesToShow[0]" class="img" />
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <div class="picsum-img-wrapper">
+                        <img [src]="imagesToShow[1]" class="img" />
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <div class="picsum-img-wrapper">
+                        <img [src]="imagesToShow[2]" class="img" />
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+
+            <div class="card-body">
+                <h1>{{windmill?.name}}</h1>
+
+                <p class="card-text"><strong>Descripción:</strong> {{windmill?.description}}</p>
+                <p class=""><strong>Usuario: </strong> {{windmill?.creator}}</p>
+            </div>
+
+            <button class="btn btn-lg btn-outline-primary mb-2 me-2" (click)="open(content)">Mostrar Piezas</button>
+
+
         </div>
-        <span role="button">
+
+    </div>
+
+
+    <div class="{{windmill?.validated !== 'Pendiente' ? 'btnOptionsHidden' : ''}}">
+        <span role="button" (click)="rechazar()">
             <fa-icon [icon]="faCircleXMark" class="cross"></fa-icon>
         </span>
-    
-        <span role="button">
+
+        <span role="button" (click)="aprobar()">
             <fa-icon [icon]="faCircleCheck" class="check"></fa-icon>
         </span>
     </div>
 </div>
+
+<ng-template #content let-offcanvas>
+	<div class="offcanvas-header">
+		<h1 class="offcanvas-title text-center" id="offcanvas-basic-title">Piezas</h1>
+		<button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+	</div>
+	<div class="offcanvas-body">
+		<form>
+			<div class="mb-5">
+				<h2>Aspa</h2>
+                <p><strong>Nombre: </strong> {{windmill?.blade?.name}}</p>
+                <p><strong>Resistencia al aire: </strong> {{windmill?.blade?.airResistance}}</p>
+                <p><strong>Material: </strong> {{windmill?.blade?.material}}</p>
+			</div>
+            <div class="mb-5">
+				<h2>Base</h2>
+                <p><strong>Nombre: </strong> {{windmill?.base?.name}}</p>
+                <p><strong>Resistencia al aire: </strong> {{windmill?.base?.airResistance}}</p>
+                <p><strong>Material: </strong> {{windmill?.base?.material}}</p>
+			</div>
+            <div class="mb-5">
+				<h2>Aspa</h2>
+                <p><strong>Nombre: </strong> {{windmill?.body?.name}}</p>
+                <p><strong>Resistencia al aire: </strong> {{windmill?.body?.airResistance}}</p>
+                <p><strong>Material: </strong> {{windmill?.body?.material}}</p>
+			</div>
+		</form>
+		<div class="text-end">
+			<button type="button" class="btn btn-outline-dark" (click)="offcanvas.close('Save click')">Save</button>
+		</div>
+	</div>
+</ng-template>
