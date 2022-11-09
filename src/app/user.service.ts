@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LocalService } from './auth/local.service';
+import { SessionService } from './auth/session.service';
 import { User } from './WindmillInterfaces/User';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { User } from './WindmillInterfaces/User';
 })
 export class UserService {
 
-  constructor(private http: HttpClient, private localService: LocalService) { }
+  constructor(private http: HttpClient, private sessionService: SessionService) { }
 
   url = 'http://localhost:3000/users';
 
@@ -65,6 +65,6 @@ export class UserService {
   }
 
   saveUser(){
-    this.localService.saveData('role', this.user!.role.toString());
+    this.sessionService.saveData('role', this.user!.role.toString());
   }
 }

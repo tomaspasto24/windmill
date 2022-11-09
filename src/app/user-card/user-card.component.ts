@@ -39,12 +39,12 @@ export class UserCardComponent implements OnInit {
     let rol: Number;
     if (role === 'Operario') {
       rol = 1
+    } else if (role === 'Auditor'){
+      rol = 2
     } else if (role === 'Administrador') {
       rol = 3
-    } else {
-      rol = 2
     }
-    await this.userservice.editUser(this.user!._id, name, password, rol).subscribe(response => {
+    await this.userservice.editUser(this.user!._id, name, password, rol!).subscribe(response => {
       if (response.acknowledged) {
         alert('Usuario editado correctamente.')
       } else {
@@ -83,4 +83,16 @@ export class UserCardComponent implements OnInit {
     return pssw;
   }
 
+  showRole(){
+    if (this.user?.role === 3){
+      return 'Administrador';
+    }
+    else if (this.user?.role === 2){
+      return 'Auditor';
+    }
+    else if (this.user?.role === 1){
+      return 'Operario';
+    }
+    return 'undefined';
+  }
 }

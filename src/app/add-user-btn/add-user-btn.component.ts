@@ -29,13 +29,10 @@ export class AddUserBtnComponent implements OnInit {
     else if (rol === "Operario"){
       rolNumerico = 1;
     }
-    else{
-      rolNumerico = 0;
-    }
     if(password !== password2) {
       alert('Contraseñas no coinciden');
     } else {
-      const obs = this.userService.register(name, password, rolNumerico);
+      const obs = this.userService.register(name, password, rolNumerico!);
       obs.subscribe(res => {})
       alert('Usuario agregado con éxito');
     }

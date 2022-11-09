@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, delay, tap} from 'rxjs';
 import { UserService } from '../user.service';
-import { LocalService } from './local.service';
+import { SessionService } from './session.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private userService: UserService, private localService: LocalService){}
+  constructor(private userService: UserService, private sessionService: SessionService){}
 
   redirectUrl: string | null = null;
   isLoggedIn!: '';
   login(): void {
-    this.localService.saveData('isLoggedIn', 'true');
+    this.sessionService.saveData('isLoggedIn', 'true');
     this.userService.saveUser();
   }
 
