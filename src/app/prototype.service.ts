@@ -18,9 +18,9 @@ export class PrototypeService {
     return this.http.get<Windmill[]>(this.url);
   }
 
-  getPrototypeById(id: string): Observable<Windmill[]> {
+  getPrototypeById(id: string): Observable<Windmill> {
     const url = `${this.url}/${id}`
-    return this.http.get<Windmill[]>(url);
+    return this.http.get<Windmill>(url);
   }
 
   postPrototype(name: string, description: string, blade: Piece, body: Piece, base: Piece, creator: string): Observable<any> {

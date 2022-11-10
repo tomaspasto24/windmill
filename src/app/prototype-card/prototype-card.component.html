@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <div class="row text-center">
+                <div class="row text-center {{windmill?.validated !== 'Pendiente' ? 'btnOptionsHidden' : ''}}">
                     <span (click)="rechazar()">
                         <fa-icon [icon]="faWrong" class="icon wrong mt-2" type="button"></fa-icon>
                     </span>
