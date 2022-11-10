@@ -1,4 +1,3 @@
-import { ValidatedType } from './../WindmillInterfaces/Windmill';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { Component, OnInit, Input } from '@angular/core';
 import { ValidatedType, Windmill } from '../WindmillInterfaces/Windmill';
@@ -12,7 +11,7 @@ import { ApprovedScreenComponent } from '../approved-screen/approved-screen.comp
 })
 export class AbmPrototypesScreenComponent implements OnInit {
   faBars = faFilter
-  constructor(private prototypeService: PrototypeService, private approvedPrototypes: ApprovedScreenComponent) { }
+  constructor(private prototypeService: PrototypeService) { }
   
   ngOnInit(): void {
     this.getPrototypes();
@@ -28,10 +27,10 @@ export class AbmPrototypesScreenComponent implements OnInit {
     });
   }
 
-  approvePrototype(){
+  /* approvePrototype(){
     this.windmill!.validated = ValidatedType.aprobado;
     this.prototypeService.getPrototypes().subscribe(data => {
       this.approvedPrototypes.approved = data as Windmill[];
     });
-  }
+  } */
 }
