@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SessionService } from './auth/session.service';
 import { User } from './WindmillInterfaces/User';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -30,6 +29,7 @@ export class UserService {
   setUserToken(user: User, token: String) {
     this.user = user;
     this.token = token;
+    this.sessionService.saveData('jwt', token as string);
   }
 
   clearUserToken() {
