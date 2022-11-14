@@ -16,7 +16,6 @@ export class LoginScreenComponent implements OnInit {
   }
 
   login(email: string, password: string) {
-    console.log(this.userService.user?.role);
     const observable = this.userService.auth(email, password);
     observable.subscribe(response => {
       if(response.error) {

@@ -23,6 +23,10 @@ export class UserService {
     })
   }
 
+  getToken() {
+    return this.token;
+  }
+
   setUserToken(user: User, token: String) {
     this.user = user;
     this.token = token;
@@ -50,9 +54,9 @@ export class UserService {
     return this.http.get<User[]>(url);
   }
 
-  postUser(name: string, password: string, rol: Number): Observable<void> {
-    return this.http.post<void>(this.url, { name, password, rol });
-  }
+  // postUser(name: string, password: string, rol: Number): Observable<void> {
+  //   return this.http.post<void>(this.url, { name, password, rol });
+  // }
 
   deleteUser(id: string): Observable<any> {
     const url = `${this.url}/${id}`
