@@ -1,3 +1,4 @@
+import { InterceptorService } from './interceptors/interceptor.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -18,7 +19,7 @@ import { WindmillModelComponent } from './windmill-model/windmill-model.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RecoverPasswordScreenComponent } from './recover-password-screen/recover-password-screen.component';
 import { GetCodePasswordScreenComponent } from './get-code-password-screen/get-code-password-screen.component';
 import { UserCardComponent } from './user-card/user-card.component';
@@ -54,7 +55,13 @@ import { ApprovedScreenComponent } from './approved-screen/approved-screen.compo
     MatButtonToggleModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
