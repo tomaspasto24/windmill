@@ -1,6 +1,10 @@
+import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { AuthGuard } from '../auth/auth.guard';
+import { AuthService } from '../auth/auth.service';
+import { SessionService } from '../auth/session.service';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -9,9 +13,19 @@ import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 export class NavBarComponent implements OnInit {
 
   faRightFromBracket = faRightFromBracket;
-  constructor(public router: Router) { }
+  constructor(public router: Router, private authService: AuthService, private sessionService: SessionService) { }
 
   ngOnInit(): void {
+    this.isAuditorOrAdmin();
+  }
+  logout(){
+    this.authService.logout();
   }
 
+  isAuditorOrAdmin(){
+    if (this.sessionService.getData('role') !== '3'){
+
+      /* document.getElementById("admin")?.style.display? = 'none'; */
+    }
+  }
 }

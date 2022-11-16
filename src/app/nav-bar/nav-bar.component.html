@@ -1,15 +1,18 @@
 <div *ngIf="router.url !== '/login'">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+  <nav>
     <div class="container-fluid">
-      <a href="/">
-        <img height="100px" src="https://ucu.edu.uy/sites/all/themes/univer/images/logo_es.png" title="Imagen Ucu"/>
-      </a>
+      <ul>
+        <a href="/">
+          <img height="45px" src="https://actividades.ucu.edu.uy/ipo/static/Resources/UCU/Logo_Texto_Blanco.png" class="logo" title="Imagen Ucu"/>
+        </a>
+        <li><a href="http://localhost:4200/works">Works</a></li>
+        <li><a href="http://localhost:4200/pieces">Pieces</a></li>
+        <li id="admin"><a href="http://localhost:4200/admin">Admin</a></li>
+          <fa-icon type="button" [icon]="faRightFromBracket" class="icon" (click)="logout()"></fa-icon>
+      </ul>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class=".flex">
-        <fa-icon [icon]="faRightFromBracket" class="icon"></fa-icon>
-      </div>
-    </div>
+    </div>  
     </nav>
 </div>

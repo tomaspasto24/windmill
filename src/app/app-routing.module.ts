@@ -14,9 +14,9 @@ const routes: Routes = [
   { path: 'admin', component: AdminScreenComponent, canActivate: [AuthGuard]},
   { path: 'prototypes', component: AbmPrototypesScreenComponent, canActivate: [AuthGuard]}, //J
   { path: 'prototype-detail/:id', component: PrototypeDetailScreenComponent, canActivate: [AuthGuard]},
-  { path: 'works', component: WorkScreenComponent }, //T
-  { path: 'login', component: LoginScreenComponent }, //T
-  { path: 'pieces', component: AbmPiezasScreenComponent }, //T
+  { path: 'works', component: WorkScreenComponent, canActivate: [AuthGuard]}, //T
+  { path: 'login', component: LoginScreenComponent}, //T
+  { path: 'pieces', component: AbmPiezasScreenComponent, canActivate: [AuthGuard]}, //T
   { path: '',   redirectTo: 'login', pathMatch: 'full' }
 ];
 
