@@ -17,7 +17,8 @@ export class AuthService {
     this.userService.saveUser();
   }
 
-  logout(isLoggedIn: boolean): void {
-    isLoggedIn = false;
+  logout(): void {
+    this.sessionService.clearData();
+    window.location.href = 'http://localhost:4200/login';
   }
 }

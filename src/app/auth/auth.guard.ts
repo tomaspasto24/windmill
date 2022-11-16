@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate {
 
   checkLogin(url: string): true|UrlTree{
     if (this.sessionService.getData('isLoggedIn') === 'true'){
-      if (this.sessionService.getData('role') === '2'){
+      if (this.sessionService.getData('role') === '3'){
         return true;
       }
     }
@@ -31,6 +31,14 @@ export class AuthGuard implements CanActivate {
     this.authService.redirectUrl = url;
 
     return this.router.parseUrl('/login');
+  }
+
+  canActivate1(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): true | UrlTree {
+    const url: string = state.url;
+    console.log(url);
+    return this.checkLogin(url);
   }
 
 }
