@@ -16,16 +16,21 @@ export class NavBarComponent implements OnInit {
   constructor(public router: Router, private authService: AuthService, private sessionService: SessionService) { }
 
   ngOnInit(): void {
-    this.isAuditorOrAdmin();
   }
   logout(){
     this.authService.logout();
   }
 
   isAuditorOrAdmin(){
-    if (this.sessionService.getData('role') !== '3'){
-
-      /* document.getElementById("admin")?.style.display? = 'none'; */
+    if (this.sessionService.getData('role') === '2' || this.sessionService.getData('role') === '3'){
+      return true;
     }
+    return false;
   }
+   isAdmin(){
+    if (this.sessionService.getData('role') === '3'){
+      return true;
+    }
+    return false;
+   }
 }

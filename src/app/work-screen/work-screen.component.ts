@@ -117,7 +117,7 @@ export class WorkScreenComponent implements OnInit {
         }
       });
     } else {
-      alert('Debe rellenar las tres piezas.')
+      alert('xd');
     }
     
   }

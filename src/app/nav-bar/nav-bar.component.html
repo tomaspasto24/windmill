@@ -7,8 +7,14 @@
         </a>
         <li><a href="http://localhost:4200/works">Works</a></li>
         <li><a href="http://localhost:4200/pieces">Pieces</a></li>
-        <li id="admin"><a href="http://localhost:4200/admin">Admin</a></li>
-          <fa-icon type="button" [icon]="faRightFromBracket" class="icon" (click)="logout()"></fa-icon>
+        <span *ngIf="isAuditorOrAdmin()">
+          <li><a href="http://localhost:4200/prototypes">Prototypes</a></li>
+        </span>
+        <span *ngIf="isAdmin()">
+          <li id="admin"><a href="http://localhost:4200/admin">Admin</a></li>
+        </span>
+        
+        <fa-icon type="button" [icon]="faRightFromBracket" class="icon" (click)="logout()"></fa-icon>
       </ul>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
