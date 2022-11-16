@@ -70,5 +70,6 @@ export class UserService {
 
   saveUser(){
     this.sessionService.saveData('role', this.user!.role.toString());
+    this.sessionService.saveData('userName', this.user!.name.toString());
   }
 }

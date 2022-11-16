@@ -13,7 +13,6 @@ export class InterceptorService implements HttpInterceptor {
 
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log(`Bearer ${this.userService.getToken()}`);
     const headers = new HttpHeaders({
       'authorization': `Bearer ${this.sessionService.getData('jwt')}`
     })

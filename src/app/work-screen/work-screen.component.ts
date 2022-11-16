@@ -105,9 +105,11 @@ export class WorkScreenComponent implements OnInit {
     const blade = this.aspaSeleccionada[0]; 
     const body = this.cuerpoSeleccionado[0]; 
     const base = this.baseSeleccionada[0];
-    const creatorName = this.userservice.user?.name;
+    const creatorName = sessionStorage.getItem('userName');
 
-    if(blade !== undefined && body !== undefined && base !== undefined && creatorName !== undefined) {
+    console.log(`blade: ${blade} body: ${body} base: ${base} creatorName: ${creatorName}`)
+    
+    if(blade !== undefined && body !== undefined && base !== undefined && creatorName !== undefined && creatorName !== null) {
       this.prototypeService.postPrototype(name, description, blade, body, base, creatorName).subscribe(response => {
         if(response.error) {
           alert('Upps ocurrió un error')
@@ -140,21 +142,12 @@ export class WorkScreenComponent implements OnInit {
   }
 
   open(content:any) : any {
-    const blade = this.aspaSeleccionada[0]; 
-    const body = this.cuerpoSeleccionado[0]; 
-    const base = this.baseSeleccionada[0];
-    const creatorName = this.userservice.user?.name;
-
-    if(blade !== undefined && body !== undefined && base !== undefined && creatorName !== undefined) {
       this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
       return content;
-    } else {
-      alert('Debe completar las tres piezas.')
-    }
   }
   
   private getDismissReason(reason: any): string {
