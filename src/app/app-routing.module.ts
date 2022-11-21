@@ -17,6 +17,8 @@ const routes: Routes = [
   { path: 'works', component: WorkScreenComponent, canActivate: [AuthGuard]}, //T
   { path: 'login', component: LoginScreenComponent}, //T
   { path: 'pieces', component: AbmPiezasScreenComponent, canActivate: [AuthGuard]}, //T
+  { path: 'getemail-password', component: GetCodePasswordScreenComponent}, //T
+  { path: 'recover-password/:code', component: RecoverPasswordScreenComponent}, //T
   { path: '',   redirectTo: 'login', pathMatch: 'full' }
 ];
 
