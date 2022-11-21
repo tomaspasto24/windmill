@@ -1,14 +1,8 @@
 .check{
     font-size: 80px;
     position: fixed;
-    bottom: 0vmax;
-    padding: 10px 16px;
-    z-index: 1;
-}
-.left-arrow{
-    font-size: 40px;
-    position: fixed;
-    left: 0vmax;
+    bottom: 5vmax;
+    right: 5vmax;
     padding: 10px 16px;
     z-index: 1;
 }
@@ -18,13 +12,41 @@
   background-color: #555;
 }
 .card{
-    position: fixed;
-    bottom: 10%;
+    position:absolute;
+    top: 30%;
     background: #f8f9fa;
-    width: 500px;
+    width: fit-content;
+    height: fit-content;
+}
+.cross{
+    font-size: 80px;
+    position: fixed;
+    left: 5vmax;
+    bottom: 5vmax;
+    padding: 10px 16px;
+    z-index: 1;
+}
+
+.btnOptionsHidden {
+    visibility: hidden;
+}
+
+.container {
+    height: calc(100vh + 250px);
+}
+
+.img { 
     height: 500px;
-}
-.left-arrow-button{
-
+    width: 500px;
 }
 
+.canvaOff {
+    height: 1000px;
+}
+
+.carousel-control-prev-icon{
+    background-image: url('https://apufpel.com.br/assets/img/seta_prim.png')
+ }
+ .carousel-control-next-icon{
+   background-image: url('https://apufpel.com.br/assets/img/seta_ult.png')
+ }

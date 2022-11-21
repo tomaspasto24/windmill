@@ -1,0 +1,9 @@
+<div class="containerUsers mt-5">
+  <div class="row m-5">
+    <div class="col-md-12 col-lg-4" *ngFor="let user of users">
+      <app-user-card [user]="user" (refresh)="getUsers()" class="m-2"></app-user-card>
+    </div>
+  </div>
+</div>
+
+<app-add-user-btn (refresh)="getUsers()"></app-add-user-btn>

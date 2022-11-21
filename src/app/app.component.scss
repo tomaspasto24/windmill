@@ -1,3 +1,11 @@
-.appContainer {
-    height: 100%;
-}
+    .appContainer {
+        height: calc(100vh - 100px);
+    }
+
+    .routerBody {
+        height: 70%;
+    }
+
+    .navBarBody {
+        height: 10%;
+    }

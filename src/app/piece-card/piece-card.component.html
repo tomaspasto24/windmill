@@ -1,0 +1,47 @@
+<div class="d-flex {{ allowEdit ? 'hovered' : ''}}">
+    <div id="card" class="card" style="width: 18rem;"  >
+        <img src="{{imageToShow}}" class="card-img-top" alt="...">
+        <div class="card-body {{ allowEdit ? 'card-body-hovered' : ''}}">
+            <p class="card-text">
+                <strong>{{piece?.name}}</strong>
+                Material: {{piece?.material}} -
+                Resistencia al aire: {{piece?.airResistance}}
+            </p>
+        </div>
+    </div>
+    <div class="btnMod mt-4 {{allowEdit ? '' : 'disable'}}">
+        <div class="tagContainer text-center justify-content-center" (click)="deletePiece()">
+            <fa-icon type="button" [icon]="faDelete"></fa-icon>
+        </div>
+        <div class="tagContainer mt-5 text-center">
+            <fa-icon type="button" [icon]="faEdit" (click)="open(editModal)"></fa-icon>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #editModal let-modal>
+    <div class="container d-flex justify-content-center">
+    <div class="d-flex flex-column justify-content-between">
+        <div class="card mt-3 p-5">
+        </div>
+        <div class="card two bg-white px-5 py-4 mb-3">
+            <div class="form-group"><input #nameInput class="form-control" value="{{piece?.name}}"><label class="form-control-placeholder">Name</label></div>
+            <input #photoInput type="file" class="form-control d-block" id="customFile1" (change)="processFile(photoInput)"/>
+            <div class="form-group"><input #airResistanceInput class="form-control" value="{{piece?.airResistance}}"><label class="form-control-placeholder">Air Resistance</label></div>
+            <p class="modal-input">
+                <label for="select" class="select">
+                    <select class="subject" id="select" #typeInput>
+                        <option value="" selected>Type</option>
+                        <option>Aspa</option>
+                        <option>Cuerpo</option>
+                        <option>Base</option>
+                    </select>
+                </label>
+            </p>
+            <div class="form-group"><input #materialInput type="text" class="form-control" value="{{piece?.material}}"><label class="form-control-placeholder">Material</label></div>
+            <button class="btn btn-primary btn-block btn-lg mt-1 mb-2" (click)="editCard(nameInput.value, airResistanceInput.valueAsNumber, materialInput.value, typeInput.value); modal.close();"><span>Add Piece<i class="fas fa-long-arrow-alt-right ml-2"></i></span></button>
+        </div>
+    </div>
+</div>
+</ng-template>

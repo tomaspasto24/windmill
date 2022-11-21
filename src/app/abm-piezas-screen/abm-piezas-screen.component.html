@@ -1,37 +1,63 @@
-<div>
+<div class="scrollable">
     <div class="container text-center mt-4">
         <div class="row justify-content-right">
-            <div class="col-4">
+            <div class="col-sm-12 col-md-4">
                 <div class="input-group">
-                    <input class="form-control form-control-lg" type="text" placeholder="Filtro 1"
-                    aria-label=".form-control-lg example">
-                    <span class="input-group-text transparent left-border-none"> <fa-icon [icon]="faBars"></fa-icon></span>
+                    <input #category class="form-control form-control-lg" type="text" placeholder="Categoria"
+                        aria-label=".form-control-lg example" (input)="filterCategoria(category.value)">
+                    <span class="input-group-text transparent left-border-none">
+                        <fa-icon [icon]="faBars"></fa-icon>
+                    </span>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-sm-12 col-md-4">
                 <div class="input-group">
-                    <input class="form-control form-control-lg" type="text" placeholder="Filtro 2"
-                    aria-label=".form-control-lg example">
-                    <span class="input-group-text transparent left-border-none"> <fa-icon [icon]="faBars"></fa-icon></span>
+                    <input #material class="form-control form-control-lg" type="text" placeholder="Material"
+                        aria-label=".form-control-lg example" (input)="filterMaterial(material.value)">
+                    <span class="input-group-text transparent left-border-none">
+                        <fa-icon [icon]="faBars"></fa-icon>
+                    </span>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="container mt-5 ">
         <div class="row form-group">
-            <div class="col mb-5 cardContainer">
-                <app-windmill-card></app-windmill-card>
-            </div>
-            <div class="col mb-5 cardContainer">
-                <app-windmill-card></app-windmill-card>
-            </div>
-            <div class="col mb-5 cardContainer">
-                <app-windmill-card></app-windmill-card>
-            </div>
-            <div class="col mb-5 cardContainer">
-                <app-windmill-card></app-windmill-card>
+            <div class="col mb-5 cardContainer" *ngFor="let piece of pieces">
+                <app-piece-card [allowEdit]="true" [piece]="piece" (refresh)="deletePiece($event)"></app-piece-card>
             </div>
         </div>
     </div>
 </div>
+
+
+    <ng-template #addModal let-modal>
+        <div class="container d-flex justify-content-center">
+            <div class="d-flex flex-column justify-content-between">
+                <div class="card mt-3 p-5">
+                </div>
+                <div class="card two bg-white px-5 py-4 mb-3">
+                    <div class="form-group"><input #nameInput class="form-control" required><label class="form-control-placeholder">Name</label></div>
+                    <input #photoInput type="file" class="form-control d-block" id="customFile1" (change)="processFile(photoInput)"/>
+                    <div class="form-group"><input #airResistanceInput class="form-control" required><label class="form-control-placeholder">Air Resistance</label></div>
+                    <p class="modal-input">
+                        <label for="select" class="select">
+                            <select class="subject" id="select" #typeInput>
+                                <option value="" selected>Type</option>
+                                <option>Aspa</option>
+                                <option>Cuerpo</option>
+                                <option>Base</option>
+                            </select>
+                        </label>
+                    </p>
+                    <div class="form-group"><input #materialInput  class="form-control" id="password" required><label class="form-control-placeholder">Material</label></div>
+                    <button class="btn btn-primary btn-block btn-lg mt-1 mb-2" (click)="postCard(nameInput.value, airResistanceInput.valueAsNumber, materialInput.value, typeInput.value); modal.close();"><span>Add Piece<i class="fas fa-long-arrow-alt-right ml-2"></i></span></button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+    <fa-icon [icon]="faPlus" class="plus" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"
+        (click)="open(addModal)"></fa-icon>
+

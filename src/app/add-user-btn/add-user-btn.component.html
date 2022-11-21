@@ -1,0 +1,35 @@
+<div>
+  <div class="row" id="lista">
+  </div>
+
+  <ng-template #mymodal let-modal>
+
+    <div class="container d-flex justify-content-center">
+      <div class="d-flex flex-column justify-content-between">
+          <div class="card mt-3 p-5">
+          </div>
+          <div class="card two bg-white px-5 py-4 mb-3">
+              <div class="form-group"><input #nameInput class="form-control"><label class="form-control-placeholder">Name</label></div>
+              <div class="form-group"><input #passwordInput type="password" class="form-control"><label class="form-control-placeholder">Password</label></div>
+              <div class="form-group"><input #password2Input type="password" class="form-control"><label class="form-control-placeholder">Confirm Password</label></div>
+              <p class="modal-input">
+                  <label for="select" class=" select">
+                    <select class="subject" id="select" #roleInput>
+                      <option selected>Operario</option>
+                      <option>Administrador</option>
+                      <option>Auditor</option>
+                    </select>
+                  </label>
+              </p>
+              <button class="btn btn-primary btn-block btn-lg mt-1 mb-2" (click)="registerUser(nameInput.value, passwordInput.value, password2Input.value, roleInput.value); modal.close()">
+                <span>Create User<i class="fas fa-long-arrow-alt-right ml-2"></i></span>
+              </button>
+          </div>
+      </div>
+    </div>
+  </ng-template>
+
+</div>
+<button type="button" class="btn btn-primary btn-lg btnn" (click)="open(mymodal)">
+  +
+</button>
