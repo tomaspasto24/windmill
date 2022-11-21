@@ -13,7 +13,7 @@ import { AuthGuard } from './auth/auth.guard';
 const routes: Routes = [
   { path: 'admin', component: AdminScreenComponent, canActivate: [AuthGuard]},
   { path: 'prototypes', component: AbmPrototypesScreenComponent, canActivate: [AuthGuard]}, //J
-  { path: 'prototype-detail/:id', component: PrototypeDetailScreenComponent, canActivate: [AuthGuard]},
+  { path: 'prototype-detail/:id', component: PrototypeDetailScreenComponent},
   { path: 'works', component: WorkScreenComponent, canActivate: [AuthGuard]}, //T
   { path: 'login', component: LoginScreenComponent}, //T
   { path: 'pieces', component: AbmPiezasScreenComponent, canActivate: [AuthGuard]}, //T
