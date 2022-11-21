@@ -81,7 +81,7 @@ export class PrototypeDetailScreenComponent implements OnInit {
           if (this.windmill !== undefined) {
             this.windmill.validated = ValidatedType.rechazado;
           }
-        } else {
+        } else { 
           alert('Ocurrió un error');
         }
       })

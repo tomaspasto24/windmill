@@ -45,13 +45,13 @@ export class PrototypeService {
   }
 
   rechazarPrototype(id: String) {
-    const url = `${this.url}/changeValidate/${id}`
-    return this.http.post<any>(url, { validated: ValidatedType.rechazado });
+    const url = `${this.url}/changeValidate`
+    return this.http.post<any>(url, { validated: ValidatedType.rechazado, id });
   }
 
   
   aprobarPrototype(id: String) {
-    const url = `${this.url}/changeValidate/${id}`
-    return this.http.post<any>(url, { validated: ValidatedType.aprobado });
+    const url = `${this.url}/changeValidate`
+    return this.http.post<any>(url, { validated: ValidatedType.aprobado, id });
   }
 }

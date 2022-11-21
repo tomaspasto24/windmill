@@ -69,7 +69,6 @@ export class WorkScreenComponent implements OnInit {
       } else if (piece.type == PieceType.Base) {
         this.basesDisponibles.push(piece);
       } else {
-        console.log(piece.type)
         this.cuerposDisponibles.push(piece);
       }
     });
@@ -107,7 +106,6 @@ export class WorkScreenComponent implements OnInit {
     const base = this.baseSeleccionada[0];
     const creatorName = sessionStorage.getItem('userName');
 
-    console.log(`blade: ${blade} body: ${body} base: ${base} creatorName: ${creatorName}`)
     
     if(blade !== undefined && body !== undefined && base !== undefined && creatorName !== undefined && creatorName !== null) {
       this.prototypeService.postPrototype(name, description, blade, body, base, creatorName).subscribe(response => {

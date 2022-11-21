@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): true | UrlTree {
     const url: string = state.url;
-    console.log(url);
     return this.checkLogin(url);
   }
 
@@ -44,7 +43,6 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): true | UrlTree {
     const url: string = state.url;
-    console.log(url);
     return this.checkLogin(url);
   }
 
@@ -64,7 +62,6 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): true | UrlTree {
     const url: string = state.url;
-    console.log(url);
     return this.checkLogin(url);
   }
 
